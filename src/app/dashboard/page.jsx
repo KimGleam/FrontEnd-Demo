@@ -1,7 +1,13 @@
-import SampleComponent from "@/components/SampleComponent";
+import React from 'react';
+import DashboardComponent from '@/components/DashboardComponent';
 
-export default function DashBoard() {
+const DashboardPage = () => {
     return (
-        <SampleComponent></SampleComponent>
-    )
-}
+        <div>
+            <h1>Dashboard</h1>
+            <DashboardComponent />
+        </div>
+    );
+};
+
+export default DashboardPage;

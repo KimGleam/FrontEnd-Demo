@@ -1,7 +1,9 @@
 import React from 'react';
 import api from './utils/axios';
+import { useRouter } from 'next/navigation';
 
 const Button = ({ onChangePage }) => {
+    const router = useRouter();
 
     const dataStringConcat = (data) => {
         return data + "_Concat String";
@@ -17,11 +19,19 @@ const Button = ({ onChangePage }) => {
             });
     };
 
+    const moveToLogin = () => {
+        router.push('/login')
+    }
+
     return (
         <div>
-            <input type="button" value="API" onClick={handleClick} />
+            <input type="button" value="API Test" onClick={handleClick}/>
+            <div>
+                <input type="button" value="로그인 이동" onClick={moveToLogin}/>
+            </div>
         </div>
-    );
+    )
+        ;
 };
 
 export default Button;

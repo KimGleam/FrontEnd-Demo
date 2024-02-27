@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { useCookies } from "react-cookie";
+import React, {useEffect, useState} from 'react';
+import {useCookies} from "react-cookie";
 import Subject from "./Subject";
 import Toc from "./Toc";
 import ReadContent from "./ReadContent";
@@ -9,14 +9,12 @@ import CreateContent from "./CreateContent";
 import UpdateContent from "./UpdateContent";
 import Control from "./Control";
 import Button from "./Button";
-import { useSearchParams } from "next/navigation";
+import {useSearchParams} from "next/navigation";
 
 const SampleComponent = () => {
     const params = useSearchParams();
-    const getToken = params.get('token');
-
     // 상태를 useState 훅을 사용하여 정의합니다.
-    const token = getToken;
+    const token = params.get('token');
     localStorage.setItem('access_token', token);
 
     const [cookies] = useCookies(['refresh_token']);
