@@ -6,9 +6,10 @@ const Subject = ({ title, sub, onChangePage }) => {
         onChangePage();
     };
 
+
     return (
         <header>
-            <h1><a href="/" onClick={handleClick}>{title}</a></h1>
+            <h1><a href="/src/static" onClick={handleClick}>{title}</a></h1>
             {sub}
         </header>
     );

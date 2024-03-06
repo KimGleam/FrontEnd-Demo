@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { useCookies } from "react-cookie";
+import {useCookies} from "react-cookie";
+import React from "react";
 
 const api = axios.create({
-    baseURL: 'http://localhost:8080'
-})
-
+        baseURL: 'http://localhost:8080'
+    })
 /**
  1. 요청 인터셉터
  2개의 콜백 함수를 받습니다.
@@ -40,7 +40,7 @@ api.interceptors.response.use(
         return response;
     },
     async (error) => {
-        const { response, config } = error;
+        const {response, config} = error;
 
         // 응답 받은 상태 코드가 401이라면
         if (response.status === 401) {
@@ -49,11 +49,11 @@ api.interceptors.response.use(
                 .find(row => row.startsWith('refresh_token='))
                 ?.split('=')[1];
 
-            const { data } = await axios.post('http://localhost:8080/api/token', {
+            const {data} = await axios.post('http://localhost:8080/api/token', {
                 refreshToken,
             });
 
-            const { accessToken } = data;
+            const {accessToken} = data;
             //새 액세스 토큰을 로컬스토리지에 저장
             localStorage.setItem('access_token', accessToken);
             //새 액세스 토큰을 헤더에 설정

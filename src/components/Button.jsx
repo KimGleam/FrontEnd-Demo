@@ -23,11 +23,18 @@ const Button = ({ onChangePage }) => {
         router.push('/login')
     }
 
+    const moveToKakaoLogin = () => {
+        router.push('/kakaoLogin')
+    }
+
     return (
         <div>
             <input type="button" value="API Test" onClick={handleClick}/>
             <div>
-                <input type="button" value="로그인 이동" onClick={moveToLogin}/>
+                <input type="button" value="구글 로그인 이동" onClick={moveToLogin}/>
+            </div>
+            <div>
+                <input type="button" value="카카오 로그인 이동" onClick={moveToKakaoLogin}/>
             </div>
         </div>
     )
