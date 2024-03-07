@@ -95,33 +95,33 @@ const categories = [
 ];
 
 const products = [
-    { id: 1, name: 'Product 1', price: '$10', image: '/product1.jpg' },
-    { id: 2, name: 'Product 2', price: '$20', image: '/product2.jpg' },
-    { id: 3, name: 'Product 3', price: '$30', image: '/product3.jpg' },
-    { id: 4, name: 'Product 4', price: '$40', image: '/product4.jpg' },
-    { id: 5, name: 'Product 5', price: '$40', image: '/product4.jpg' },
-    { id: 6, name: 'Product 5', price: '$40', image: '/product4.jpg' },
+    { id: 1, name: 'Product 1', price: '$10', image: 'https://images.unsplash.com/photo-1549388604-817d15aa0110' },
+    { id: 2, name: 'Product 2', price: '$20', image: 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3' },
+    { id: 3, name: 'Product 3', price: '$30', image: 'https://images.unsplash.com/photo-1523413651479-597eb2da0ad6' },
+    { id: 4, name: 'Product 4', price: '$40', image: 'https://images.unsplash.com/photo-1525097487452-6278ff080c31' },
+    { id: 5, name: 'Product 5', price: '$40', image: 'https://images.unsplash.com/photo-1574180045827-681f8a1a9622' },
+    { id: 6, name: 'Product 5', price: '$40', image: 'https://images.unsplash.com/photo-1597262975002-c5c3b14bbd62' },
 ];
 
 const promotions = [
-    { id: 1, name: 'Promotion 1', image: '/promotion1.jpg' },
-    { id: 2, name: 'Promotion 2', image: '/promotion2.jpg' },
-    { id: 3, name: 'Promotion 3', image: '/promotion3.jpg' }
+    { id: 1, name: 'Promotion 1', image: 'https://images.unsplash.com/photo-1549388604-817d15aa0110' },
+    { id: 2, name: 'Promotion 2', image: 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3' },
+    { id: 3, name: 'Promotion 3', image: 'https://images.unsplash.com/photo-1523413651479-597eb2da0ad6' }
 ];
 
 const events = [
-    { id: 1, name: 'Event 1', description: 'Event description 1' },
-    { id: 2, name: 'Event 2', description: 'Event description 2' },
-    { id: 3, name: 'Event 3', description: 'Event description 3' }
+    { id: 1, name: 'Event 1', image: 'https://images.unsplash.com/photo-1549388604-817d15aa0110' },
+    { id: 2, name: 'Event 2', image: 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3' },
+    { id: 3, name: 'Event 3', image: 'https://images.unsplash.com/photo-1523413651479-597eb2da0ad6' }
 ];
 
 const discounts = [
-    { id: 1, name: 'Discount 1', price: '$5', image: '/discount1.jpg' },
-    { id: 2, name: 'Discount 2', price: '$10', image: '/discount2.jpg' },
-    { id: 3, name: 'Discount 3', price: '$15', image: '/discount3.jpg' },
-    { id: 4, name: 'Discount 4', price: '$20', image: '/discount4.jpg' },
-    { id: 5, name: 'Discount 5', price: '$20', image: '/discount4.jpg' },
-    { id: 6, name: 'Discount 6', price: '$20', image: '/discount4.jpg' }
+    { id: 1, name: 'Discount 1', price: '$5', image: 'https://images.unsplash.com/photo-1549388604-817d15aa0110' },
+    { id: 2, name: 'Discount 2', price: '$10',image: 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3'  },
+    { id: 3, name: 'Discount 3', price: '$15',image: 'https://images.unsplash.com/photo-1523413651479-597eb2da0ad6' },
+    { id: 4, name: 'Discount 4', price: '$20',image: 'https://images.unsplash.com/photo-1525097487452-6278ff080c31' },
+    { id: 5, name: 'Discount 5', price: '$20',image: 'https://images.unsplash.com/photo-1574180045827-681f8a1a9622' },
+    { id: 6, name: 'Discount 6', price: '$20',image: 'https://images.unsplash.com/photo-1597262975002-c5c3b14bbd62' }
 ];
 
 const Home = () => {
@@ -149,11 +149,11 @@ const Home = () => {
     };
 
     const handlePrevEvent = () => {
-        setCurrentEventIndex(prevIndex => (prevIndex === 0 ? events.length - 1 : prevIndex - 1));
+        setCurrentEventIndex(prevIndex => (prevIndex === 0 ? promotions.length - 1 : prevIndex - 1));
     };
 
     const handleNextEvent = () => {
-        setCurrentEventIndex(prevIndex => (prevIndex === events.length - 1 ? 0 : prevIndex + 1));
+        setCurrentEventIndex(prevIndex => (prevIndex === promotions.length - 1 ? 0 : prevIndex + 1));
     };
 
     const handlePrevDiscount = () => {
@@ -248,16 +248,16 @@ const Home = () => {
             </Popover>
 
             {/* 프로모션 영역 */}
-            <Paper sx={{ p: 2, mb: 2, marginTop: 5 }}>
+            <Paper sx={{ p: 2, mb: 2, marginTop: 5, height: 400 }}>
                 <Typography variant="h4" mb={2}>프로모션 상품</Typography>
-                <Grid container spacing={2}>
+                <Grid container spacing={2} alignItems="center">
                     <Grid item>
                         <IconButton onClick={handlePrevPromotion}>
                             <ArrowBackIcon />
                         </IconButton>
                     </Grid>
-                    <Grid item xs>
-                        <img src={promotions[currentPromotionIndex].image} alt={promotions[currentPromotionIndex].name} style={{ width: '100%' }} />
+                    <Grid item xs sx={{ p: 2, mb: 2, height: 390 }}>
+                        <img src={promotions[currentPromotionIndex].image} alt={promotions[currentPromotionIndex].name} style={{ width: '100%', height: '100%' }} />
                     </Grid>
                     <Grid item>
                         <IconButton onClick={handleNextPromotion}>
@@ -284,7 +284,7 @@ const Home = () => {
                                 <Grid key={product.id} item xs={3} sm={3}>
                                     {/* 할인 상품 카드 */}
                                     <Paper sx={{height: 250, width: 220, marginBottom: 2}}>
-                                        <img src={product.image} alt={product.name} style={{width: '100%'}}/>
+                                        <img src={product.image} alt={product.name} style={{width: '100%', height: '100%'}}/>
                                     </Paper>
                                     <Paper sx={{height: 80, width: 220}}>
                                         <Typography variant="h6">{product.name}</Typography>
@@ -321,7 +321,7 @@ const Home = () => {
                                 <Grid key={discount.id} item xs={6} sm={3}>
                                     {/* 할인 상품 카드 */}
                                     <Paper sx={{height: 250, width: 220, marginBottom: 2}}>
-                                        <img src={discount.image} alt={discount.name} style={{width: '100%'}}/>
+                                        <img src={discount.image} alt={discount.name} style={{width: '100%', height: '100%'}}/>
                                     </Paper>
                                     <Paper sx={{height: 80, width: 220}}>
                                         <Typography variant="h6">{discount.name}</Typography>
@@ -341,18 +341,17 @@ const Home = () => {
                 </Grid>
             </Paper>
 
-            {/* 이벤트 내용 */}
-            <Paper sx={{ p: 2, mb: 2, marginTop: 7 }}>
-                <Typography variant="h4">이벤트 내용</Typography>
-                <Grid container spacing={2}>
+            {/* 이벤트 영역 */}
+            <Paper sx={{ p: 2, mb: 2, marginTop: 5, height: 400 }}>
+                <Typography variant="h4" mb={2}>이벤트</Typography>
+                <Grid container spacing={2} alignItems="center">
                     <Grid item>
                         <IconButton onClick={handlePrevEvent}>
                             <ArrowBackIcon />
                         </IconButton>
                     </Grid>
-                    <Grid item xs>
-                        <Typography variant="h6">{events[currentEventIndex].name}</Typography>
-                        <Typography variant="body1">{events[currentEventIndex].description}</Typography>
+                    <Grid item xs sx={{ p: 2, mb: 2, height: 390 }}>
+                        <img src={events[currentEventIndex].image} alt={events[currentEventIndex].name} style={{ width: '100%', height: '100%' }} />
                     </Grid>
                     <Grid item>
                         <IconButton onClick={handleNextEvent}>
