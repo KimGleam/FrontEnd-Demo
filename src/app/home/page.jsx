@@ -280,13 +280,15 @@ const Home = () => {
                     <Grid item xs={10}>
                         <Typography variant="h4" mb={2}>상품 목록</Typography>
                         <Grid container spacing={2}>
-                            {products.slice(currentProductIndex, currentProductIndex + 4).map((discount, index) => (
-                                <Grid key={discount.id} item xs={3} sm={3}>
+                            {products.slice(currentProductIndex, currentProductIndex + 4).map((product, index) => (
+                                <Grid key={product.id} item xs={3} sm={3}>
                                     {/* 할인 상품 카드 */}
-                                    <Paper sx={{ height: 300, width: 220 }}>
-                                        <img src={discount.image} alt={discount.name} style={{ width: '100%' }} />
-                                        <Typography variant="h6">{discount.name}</Typography>
-                                        <Typography variant="body1">{discount.price}</Typography>
+                                    <Paper sx={{height: 250, width: 220, marginBottom: 2}}>
+                                        <img src={product.image} alt={product.name} style={{width: '100%'}}/>
+                                    </Paper>
+                                    <Paper sx={{height: 80, width: 220}}>
+                                        <Typography variant="h6">{product.name}</Typography>
+                                        <Typography variant="body1">{product.price}</Typography>
                                     </Paper>
                                 </Grid>
                             ))}
@@ -318,8 +320,10 @@ const Home = () => {
                             {discounts.slice(currentDiscountIndex, currentDiscountIndex + 4).map((discount, index) => (
                                 <Grid key={discount.id} item xs={6} sm={3}>
                                     {/* 할인 상품 카드 */}
-                                    <Paper sx={{ height: 300, width: 220 }}>
-                                        <img src={discount.image} alt={discount.name} style={{ width: '100%' }} />
+                                    <Paper sx={{height: 250, width: 220, marginBottom: 2}}>
+                                        <img src={discount.image} alt={discount.name} style={{width: '100%'}}/>
+                                    </Paper>
+                                    <Paper sx={{height: 80, width: 220}}>
                                         <Typography variant="h6">{discount.name}</Typography>
                                         <Typography variant="body1">{discount.price}</Typography>
                                     </Paper>
