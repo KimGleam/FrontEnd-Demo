@@ -19,6 +19,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useState } from 'react';
 import {MenuList} from "@mui/joy";
+import Box from "@mui/material/Box";
 
 const searchCategories = [
     { id: 1, name: 'Category 1' },
@@ -177,44 +178,46 @@ const Home = () => {
     };
 
     return (
-        <Container>
+        <Box>
             {/* 헤더 */}
-            <Grid container justifyContent="space-between" alignItems="center" sx={{ py: 2 }}>
-                <Grid item>
-                    <IconButton color="inherit" sx={{ mr: 2 }} onClick={handleCategoryButtonClick}>
-                        <MenuIcon />
-                    </IconButton>
-                    <FormControl variant="outlined" sx={{marginLeft: 10}}>
-                        <InputLabel id="category-label">Category</InputLabel>
-                        <Select
-                            labelId="category-label"
-                            id="category"
-                            value={selectedCategory}
-                            onChange={handleCategoryChange}
-                            label="Category"
-                            sx={{width:200}}
-                        >
-                            {searchCategories.map((category) => (
-                                <MenuItem key={category.id} value={category.id}>
-                                    {category.name}
-                                </MenuItem>
-                            ))}
-                        </Select>
-                    </FormControl>
-                    <TextField id="search" label="Search" variant="outlined" sx={{ ml: 1, width: 600 }} />
-                    <IconButton color="inherit">
-                        <SearchIcon sx={{width: 40, height: 40}} />
-                    </IconButton>
+            <Container>
+                <Grid container justifyContent="space-between" alignItems="center" sx={{ py: 2 }}>
+                    <Grid item>
+                        <IconButton color="inherit" sx={{ mr: 2 }} onClick={handleCategoryButtonClick}>
+                            <MenuIcon />
+                        </IconButton>
+                        <FormControl variant="outlined" sx={{marginLeft: 10}}>
+                            <InputLabel id="category-label">Category</InputLabel>
+                            <Select
+                                labelId="category-label"
+                                id="category"
+                                value={selectedCategory}
+                                onChange={handleCategoryChange}
+                                label="Category"
+                                sx={{width:200}}
+                            >
+                                {searchCategories.map((category) => (
+                                    <MenuItem key={category.id} value={category.id}>
+                                        {category.name}
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                        <TextField id="search" label="Search" variant="outlined" sx={{ ml: 1, width: 600 }} />
+                        <IconButton color="inherit">
+                            <SearchIcon sx={{width: 40, height: 40}} />
+                        </IconButton>
+                    </Grid>
+                    <Grid item>
+                        <IconButton color="inherit">
+                            <ShoppingCartIcon sx={{width: 40, height: 40}} />
+                        </IconButton>
+                        <IconButton color="inherit">
+                            <AccountCircleIcon sx={{width: 40, height: 40}} />
+                        </IconButton>
+                    </Grid>
                 </Grid>
-                <Grid item>
-                    <IconButton color="inherit">
-                        <ShoppingCartIcon sx={{width: 40, height: 40}} />
-                    </IconButton>
-                    <IconButton color="inherit">
-                        <AccountCircleIcon sx={{width: 40, height: 40}} />
-                    </IconButton>
-                </Grid>
-            </Grid>
+            </Container>
 
 
             {/* 카테고리 메뉴 */}
@@ -248,7 +251,7 @@ const Home = () => {
             </Popover>
 
             {/* 프로모션 영역 */}
-            <Paper sx={{ p: 2, mb: 2, marginTop: 5, height: 400 }}>
+            <Box sx={{ p: 2, mb: 2, marginTop: 1, height: 400 }}>
                 <Typography variant="h4" mb={2}>프로모션 상품</Typography>
                 <Grid container spacing={2} alignItems="center">
                     <Grid item>
@@ -265,84 +268,88 @@ const Home = () => {
                         </IconButton>
                     </Grid>
                 </Grid>
-            </Paper>
+            </Box>
 
             {/* 상품 목록 */}
-            <Paper sx={{ p: 2, mb: 2, marginTop: 7 }}>
-                <Grid container spacing={2} alignItems="center">
-                    <Grid item xs={1}>
-                        {currentProductIndex !== 0 && (
-                            <IconButton onClick={handlePrevProduct}>
-                                <ArrowBackIcon />
-                            </IconButton>
-                        )}
-                    </Grid>
-                    <Grid item xs={10}>
-                        <Typography variant="h4" mb={2}>상품 목록</Typography>
-                        <Grid container spacing={2}>
-                            {products.slice(currentProductIndex, currentProductIndex + 4).map((product, index) => (
-                                <Grid key={product.id} item xs={3} sm={3}>
-                                    {/* 할인 상품 카드 */}
-                                    <Paper sx={{height: 250, width: 220, marginBottom: 2}}>
-                                        <img src={product.image} alt={product.name} style={{width: '100%', height: '100%'}}/>
-                                    </Paper>
-                                    <Paper sx={{height: 80, width: 220}}>
-                                        <Typography variant="h6">{product.name}</Typography>
-                                        <Typography variant="body1">{product.price}</Typography>
-                                    </Paper>
-                                </Grid>
-                            ))}
+            <Container maxWidth="xl">
+                <Box sx={{ p: 2, mb: 2, marginTop: 7 }}>
+                    <Grid container spacing={2} alignItems="center">
+                        <Grid item xs={1}>
+                            {currentProductIndex !== 0 && (
+                                <IconButton onClick={handlePrevProduct}>
+                                    <ArrowBackIcon />
+                                </IconButton>
+                            )}
+                        </Grid>
+                        <Grid item xs={10}>
+                            <Typography variant="h4" mb={2}>상품 목록</Typography>
+                            <Grid container spacing={2}>
+                                {products.slice(currentProductIndex, currentProductIndex + 4).map((product, index) => (
+                                    <Grid key={product.id} item xs={3} sm={3}>
+                                        {/* 할인 상품 카드 */}
+                                        <Paper sx={{height: 270, width: 240, marginBottom: 2}}>
+                                            <img src={product.image} alt={product.name} style={{width: '100%', height: '100%'}}/>
+                                        </Paper>
+                                        <Paper sx={{height: 80, width: 240}}>
+                                            <Typography variant="h6">{product.name}</Typography>
+                                            <Typography variant="body1">{product.price}</Typography>
+                                        </Paper>
+                                    </Grid>
+                                ))}
+                            </Grid>
+                        </Grid>
+                        <Grid item xs={1} sx={{ textAlign: 'right' }}>
+                            {products.length > 4 && currentProductIndex !== products.length - 4 && (
+                                <IconButton onClick={handleNextProduct}>
+                                    <ArrowForwardIcon />
+                                </IconButton>
+                            )}
                         </Grid>
                     </Grid>
-                    <Grid item xs={1} sx={{ textAlign: 'right' }}>
-                        {products.length > 4 && currentProductIndex !== products.length - 4 && (
-                            <IconButton onClick={handleNextProduct}>
-                                <ArrowForwardIcon />
-                            </IconButton>
-                        )}
-                    </Grid>
-                </Grid>
-            </Paper>
+                </Box>
+            </Container>
 
             {/* 할인 상품 영역 */}
-            <Paper sx={{ p: 2, mb: 2, marginTop: 7 }}>
-                <Grid container spacing={2} alignItems="center">
-                    <Grid item xs={1}>
-                        {currentDiscountIndex !== 0 && (
-                            <IconButton onClick={handlePrevDiscount}>
-                                <ArrowBackIcon />
-                            </IconButton>
-                        )}
-                    </Grid>
-                    <Grid item xs={10}>
-                        <Typography variant="h4" mb={2}>할인 상품</Typography>
-                        <Grid container spacing={2}>
-                            {discounts.slice(currentDiscountIndex, currentDiscountIndex + 4).map((discount, index) => (
-                                <Grid key={discount.id} item xs={6} sm={3}>
-                                    {/* 할인 상품 카드 */}
-                                    <Paper sx={{height: 250, width: 220, marginBottom: 2}}>
-                                        <img src={discount.image} alt={discount.name} style={{width: '100%', height: '100%'}}/>
-                                    </Paper>
-                                    <Paper sx={{height: 80, width: 220}}>
-                                        <Typography variant="h6">{discount.name}</Typography>
-                                        <Typography variant="body1">{discount.price}</Typography>
-                                    </Paper>
-                                </Grid>
-                            ))}
+            <Container maxWidth="xl">
+                <Box sx={{ p: 2, mb: 2, marginTop: 7}}>
+                    <Grid container spacing={2} alignItems="center">
+                        <Grid item xs={1}>
+                            {currentDiscountIndex !== 0 && (
+                                <IconButton onClick={handlePrevDiscount}>
+                                    <ArrowBackIcon />
+                                </IconButton>
+                            )}
+                        </Grid>
+                        <Grid item xs={10}>
+                            <Typography variant="h4" mb={2}>할인 상품</Typography>
+                            <Grid container spacing={2}>
+                                {discounts.slice(currentDiscountIndex, currentDiscountIndex + 4).map((discount, index) => (
+                                    <Grid key={discount.id} item xs={6} sm={3}>
+                                        {/* 할인 상품 카드 */}
+                                        <Paper sx={{height: 270, width: 240, marginBottom: 2}}>
+                                            <img src={discount.image} alt={discount.name} style={{width: '100%', height: '100%'}}/>
+                                        </Paper>
+                                        <Paper sx={{height: 80, width: 220}}>
+                                            <Typography variant="h6">{discount.name}</Typography>
+                                            <Typography variant="body1">{discount.price}</Typography>
+                                        </Paper>
+                                    </Grid>
+                                ))}
+                            </Grid>
+                        </Grid>
+                        <Grid item xs={1} sx={{ textAlign: 'right' }}>
+                            {discounts.length > 4 && currentDiscountIndex !== discounts.length - 4 && (
+                                <IconButton onClick={handleNextDiscount}>
+                                    <ArrowForwardIcon />
+                                </IconButton>
+                            )}
                         </Grid>
                     </Grid>
-                    <Grid item xs={1} sx={{ textAlign: 'right' }}>
-                        {discounts.length > 4 && currentDiscountIndex !== discounts.length - 4 && (
-                            <IconButton onClick={handleNextDiscount}>
-                                <ArrowForwardIcon />
-                            </IconButton>
-                        )}
-                    </Grid>
-                </Grid>
-            </Paper>
+                </Box>
+            </Container>
 
             {/* 이벤트 영역 */}
-            <Paper sx={{ p: 2, mb: 2, marginTop: 5, height: 400 }}>
+            <Box sx={{ p: 2, mb: 2, marginTop: 5, height: 400 }}>
                 <Typography variant="h4" mb={2}>이벤트</Typography>
                 <Grid container spacing={2} alignItems="center">
                     <Grid item>
@@ -359,8 +366,8 @@ const Home = () => {
                         </IconButton>
                     </Grid>
                 </Grid>
-            </Paper>
-        </Container>
+            </Box>
+        </Box>
     );
 };
 
