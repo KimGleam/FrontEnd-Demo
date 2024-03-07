@@ -180,8 +180,8 @@ const Home = () => {
     return (
         <Box>
             {/* 헤더 */}
-            <Container>
-                <Grid container justifyContent="space-between" alignItems="center" sx={{ py: 2 }}>
+            <Container sx={{borderRadius: 10,position: 'fixed', left: '50%', transform: 'translate(-50%, 0)', backgroundColor:'white', paddingTop:1, paddingBottom:1, paddingLeft: 100, paddingRight: 100}}>
+                <Grid container justifyContent="space-between" alignItems="center" sx={{ py: 0 }}>
                     <Grid item>
                         <IconButton color="inherit" sx={{ mr: 2 }} onClick={handleCategoryButtonClick}>
                             <MenuIcon />
@@ -217,53 +217,52 @@ const Home = () => {
                         </IconButton>
                     </Grid>
                 </Grid>
+
+                {/* 카테고리 메뉴 */}
+                <Popover
+                    open={Boolean(anchorEl)}
+                    anchorEl={anchorEl}
+                    onClose={handleCategoryClose}
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                    }}
+                >
+                    <MenuList autoFocusItem={Boolean(anchorEl)} id="menu-list-grow" onKeyDown={handleCategoryClose} sx={{width: 170, height: 300}}>
+                        {categories.map((category) => (
+                            <MenuItem
+                                key={category.id}
+                            >
+                                <ListItemText primary={category.name} />
+                                {category.children.length > 0 && (
+                                    <IconButton size="small">
+                                        <ArrowForwardIcon />
+                                    </IconButton>
+                                )}
+                            </MenuItem>
+                        ))}
+                    </MenuList>
+                </Popover>
             </Container>
 
-
-            {/* 카테고리 메뉴 */}
-            <Popover
-                open={Boolean(anchorEl)}
-                anchorEl={anchorEl}
-                onClose={handleCategoryClose}
-                anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
-                }}
-                transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                }}
-            >
-                <MenuList autoFocusItem={Boolean(anchorEl)} id="menu-list-grow" onKeyDown={handleCategoryClose} sx={{width: 170, height: 300}}>
-                    {categories.map((category) => (
-                        <MenuItem
-                            key={category.id}
-                        >
-                            <ListItemText primary={category.name} />
-                            {category.children.length > 0 && (
-                                <IconButton size="small">
-                                    <ArrowForwardIcon />
-                                </IconButton>
-                            )}
-                        </MenuItem>
-                    ))}
-                </MenuList>
-            </Popover>
-
-            {/* 프로모션 영역 */}
-            <Box sx={{ p: 2, mb: 2, marginTop: 1, height: 400 }}>
-                <Typography variant="h4" mb={2}>프로모션 상품</Typography>
+            {/* 이벤트 영역 */}
+            <Box sx={{ p: 2, mb: 2, paddingTop: 13, height: 400 }}>
+                <Typography variant="h4" mb={2}>이벤트</Typography>
                 <Grid container spacing={2} alignItems="center">
                     <Grid item>
-                        <IconButton onClick={handlePrevPromotion}>
+                        <IconButton onClick={handlePrevEvent}>
                             <ArrowBackIcon />
                         </IconButton>
                     </Grid>
                     <Grid item xs sx={{ p: 2, mb: 2, height: 390 }}>
-                        <img src={promotions[currentPromotionIndex].image} alt={promotions[currentPromotionIndex].name} style={{ width: '100%', height: '100%' }} />
+                        <img src={events[currentEventIndex].image} alt={events[currentEventIndex].name} style={{ width: '100%', height: '100%' }} />
                     </Grid>
                     <Grid item>
-                        <IconButton onClick={handleNextPromotion}>
+                        <IconButton onClick={handleNextEvent}>
                             <ArrowForwardIcon />
                         </IconButton>
                     </Grid>
@@ -348,20 +347,20 @@ const Home = () => {
                 </Box>
             </Container>
 
-            {/* 이벤트 영역 */}
-            <Box sx={{ p: 2, mb: 2, marginTop: 5, height: 400 }}>
-                <Typography variant="h4" mb={2}>이벤트</Typography>
+            {/* 프로모션 영역 */}
+            <Box sx={{ p: 2, mb: 2, marginTop: 1, height: 400 }}>
+                <Typography variant="h4" mb={2}>프로모션 상품</Typography>
                 <Grid container spacing={2} alignItems="center">
                     <Grid item>
-                        <IconButton onClick={handlePrevEvent}>
+                        <IconButton onClick={handlePrevPromotion}>
                             <ArrowBackIcon />
                         </IconButton>
                     </Grid>
                     <Grid item xs sx={{ p: 2, mb: 2, height: 390 }}>
-                        <img src={events[currentEventIndex].image} alt={events[currentEventIndex].name} style={{ width: '100%', height: '100%' }} />
+                        <img src={promotions[currentPromotionIndex].image} alt={promotions[currentPromotionIndex].name} style={{ width: '100%', height: '100%' }} />
                     </Grid>
                     <Grid item>
-                        <IconButton onClick={handleNextEvent}>
+                        <IconButton onClick={handleNextPromotion}>
                             <ArrowForwardIcon />
                         </IconButton>
                     </Grid>
