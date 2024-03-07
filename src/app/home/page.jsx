@@ -81,33 +81,33 @@ const Home = () => {
     return (
         <Container>
             {/* 헤더 */}
-            <Grid container justifyContent="space-between" alignItems="center" sx={{ py: 2 }}>
+            <Grid container justifyContent="space-between" alignItems="center" sx={{py: 2}}>
                 <Grid item>
-                    <IconButton color="inherit" sx={{ mr: 2 }}>
-                        <MenuIcon />
+                    <IconButton color="inherit" sx={{mr: 2}}>
+                        <MenuIcon/>
                     </IconButton>
-                    <TextField id="search" label="Search" variant="outlined" sx={{ mr: 1 }} />
+                    <TextField id="search" label="Search" variant="outlined" sx={{mr: 1}}/>
                     <IconButton color="inherit">
-                        <SearchIcon />
+                        <SearchIcon/>
                     </IconButton>
                 </Grid>
                 <Grid item>
                     <IconButton color="inherit">
-                        <ShoppingCartIcon />
+                        <ShoppingCartIcon/>
                     </IconButton>
                     <IconButton color="inherit">
-                        <AccountCircleIcon />
+                        <AccountCircleIcon/>
                     </IconButton>
                 </Grid>
             </Grid>
 
             {/* 프로모션 영역 */}
-            <Paper sx={{ p: 2, mb: 2 }}>
+            <Paper sx={{p: 2, mb: 2}}>
                 <Typography variant="h4" mb={2}>프로모션 상품</Typography>
                 <Grid container spacing={2}>
                     <Grid item>
                         <IconButton onClick={handlePrevPromotion}>
-                            <ArrowBackIcon />
+                            <ArrowBackIcon/>
                         </IconButton>
                     </Grid>
                     <Grid item xs>
@@ -115,41 +115,43 @@ const Home = () => {
                     </Grid>
                     <Grid item>
                         <IconButton onClick={handleNextPromotion}>
-                            <ArrowForwardIcon />
+                            <ArrowForwardIcon/>
                         </IconButton>
                     </Grid>
                 </Grid>
             </Paper>
 
             {/* 상품 목록 */}
-            <Paper sx={{ p: 2, mb: 2 }}>
+            <Paper sx={{p: 2, mb: 2}}>
                 <Grid container spacing={2} alignItems="center">
                     <Grid item xs={1}>
                         {currentProductIndex !== 0 && (
                             <IconButton onClick={handlePrevProduct}>
-                                <ArrowBackIcon />
+                                <ArrowBackIcon/>
                             </IconButton>
                         )}
                     </Grid>
                     <Grid item xs={10}>
                         <Typography variant="h4" mb={2}>상품 목록</Typography>
                         <Grid container spacing={2}>
-                            {products.slice(currentProductIndex, currentProductIndex + 4).map((discount, index) => (
-                                <Grid key={discount.id} item xs={3} sm={3}>
+                            {products.slice(currentProductIndex, currentProductIndex + 4).map((product, index) => (
+                                <Grid key={product.id} item xs={3} sm={3}>
                                     {/* 할인 상품 카드 */}
-                                    <Paper sx={{ height: 300, width: 220 }}>
-                                        <img src={discount.image} alt={discount.name} style={{ width: '100%' }} />
-                                        <Typography variant="h6">{discount.name}</Typography>
-                                        <Typography variant="body1">{discount.price}</Typography>
+                                    <Paper sx={{height: 250, width: 220, marginBottom: 2}}>
+                                        <img src={product.image} alt={product.name} style={{width: '100%'}}/>
+                                    </Paper>
+                                    <Paper sx={{height: 80, width: 220}}>
+                                        <Typography variant="h6">{product.name}</Typography>
+                                        <Typography variant="body1">{product.price}</Typography>
                                     </Paper>
                                 </Grid>
                             ))}
                         </Grid>
                     </Grid>
-                    <Grid item xs={1} sx={{ textAlign: 'right' }}>
+                    <Grid item xs={1} sx={{textAlign: 'right'}}>
                         {products.length > 4 && currentProductIndex !== products.length - 4 && (
                             <IconButton onClick={handleNextProduct}>
-                                <ArrowForwardIcon />
+                                <ArrowForwardIcon/>
                             </IconButton>
                         )}
                     </Grid>
@@ -157,12 +159,12 @@ const Home = () => {
             </Paper>
 
             {/* 할인 상품 영역 */}
-            <Paper sx={{ p: 2, mb: 2 }}>
+            <Paper sx={{p: 2, mb: 2}}>
                 <Grid container spacing={2} alignItems="center">
                     <Grid item xs={1}>
                         {currentDiscountIndex !== 0 && (
                             <IconButton onClick={handlePrevDiscount}>
-                                <ArrowBackIcon />
+                                <ArrowBackIcon/>
                             </IconButton>
                         )}
                     </Grid>
@@ -172,8 +174,10 @@ const Home = () => {
                             {discounts.slice(currentDiscountIndex, currentDiscountIndex + 4).map((discount, index) => (
                                 <Grid key={discount.id} item xs={6} sm={3}>
                                     {/* 할인 상품 카드 */}
-                                    <Paper sx={{ height: 300, width: 220 }}>
-                                        <img src={discount.image} alt={discount.name} style={{ width: '100%' }} />
+                                    <Paper sx={{height: 250, width: 220, marginBottom: 2}}>
+                                        <img src={discount.image} alt={discount.name} style={{width: '100%'}}/>
+                                    </Paper>
+                                    <Paper sx={{height: 80, width: 220}}>
                                         <Typography variant="h6">{discount.name}</Typography>
                                         <Typography variant="body1">{discount.price}</Typography>
                                     </Paper>
@@ -181,10 +185,10 @@ const Home = () => {
                             ))}
                         </Grid>
                     </Grid>
-                    <Grid item xs={1} sx={{ textAlign: 'right' }}>
+                    <Grid item xs={1} sx={{textAlign: 'right'}}>
                         {discounts.length > 4 && currentDiscountIndex !== discounts.length - 4 && (
                             <IconButton onClick={handleNextDiscount}>
-                                <ArrowForwardIcon />
+                                <ArrowForwardIcon/>
                             </IconButton>
                         )}
                     </Grid>
@@ -192,12 +196,12 @@ const Home = () => {
             </Paper>
 
             {/* 이벤트 내용 */}
-            <Paper sx={{ p: 2, mb: 2 }}>
+            <Paper sx={{p: 2, mb: 2}}>
                 <Typography variant="h4">이벤트 내용</Typography>
                 <Grid container spacing={2}>
                     <Grid item>
                         <IconButton onClick={handlePrevEvent}>
-                            <ArrowBackIcon />
+                            <ArrowBackIcon/>
                         </IconButton>
                     </Grid>
                     <Grid item xs>
@@ -206,7 +210,7 @@ const Home = () => {
                     </Grid>
                     <Grid item>
                         <IconButton onClick={handleNextEvent}>
-                            <ArrowForwardIcon />
+                            <ArrowForwardIcon/>
                         </IconButton>
                     </Grid>
                 </Grid>
