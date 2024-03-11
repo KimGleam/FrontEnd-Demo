@@ -30,81 +30,12 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import Carousel from "react-material-ui-carousel";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 
-const searchCategories = [
-    { id: 1, name: 'Category 1' },
-    { id: 2, name: 'Category 2' },
-    { id: 3, name: 'Category 3' },
-    { id: 4, name: 'Category 4' }
-];
-
-const categories = [
-    {
-        id: 1,
-        name: '카테고리 1',
-        children: [
-            {
-                id: 2,
-                name: '하위 카테고리 1-1',
-                children: []
-            },
-            {
-                id: 3,
-                name: '하위 카테고리 1-2',
-                children: []
-            }
-        ]
-    },
-    {
-        id: 4,
-        name: '카테고리 2',
-        children: [
-            {
-                id: 5,
-                name: '하위 카테고리 2-1',
-                children: []
-            },
-            {
-                id: 6,
-                name: '하위 카테고리 2-2',
-                children: []
-            }
-        ]
-    },
-    {
-        id: 5,
-        name: '카테고리 3',
-        children: [
-            {
-                id: 6,
-                name: '하위 카테고리 3-1',
-                children: []
-            },
-            {
-                id: 7,
-                name: '하위 카테고리 3-2',
-                children: []
-            }
-        ]
-    },
-    {
-        id: 8,
-        name: '카테고리 4',
-        children: [
-            {
-                id: 9,
-                name: '하위 카테고리 4-1',
-                children: []
-            },
-            {
-                id: 10,
-                name: '하위 카테고리 4-2',
-                children: []
-            }
-        ]
-    }
-];
 
 const products = [
     { id: 1, name: 'Product 1', price: '$10', image: 'https://images.unsplash.com/photo-1549388604-817d15aa0110' },
@@ -137,6 +68,14 @@ const discounts = [
 ];
 
 const Home = () => {
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1
+    };
+
     const [currentProductIndex, setCurrentProductIndex] = useState(0);
     const [currentPromotionIndex, setCurrentPromotionIndex] = useState(0);
     const [currentEventIndex, setCurrentEventIndex] = useState(0);
@@ -287,22 +226,6 @@ const Home = () => {
         setCurrentProductIndex(prevIndex => (prevIndex === products.length - 1 ? 0 : prevIndex + 1));
     };
 
-    const handlePrevPromotion = () => {
-        setCurrentPromotionIndex(prevIndex => (prevIndex === 0 ? promotions.length - 1 : prevIndex - 1));
-    };
-
-    const handleNextPromotion = () => {
-        setCurrentPromotionIndex(prevIndex => (prevIndex === promotions.length - 1 ? 0 : prevIndex + 1));
-    };
-
-    const handlePrevEvent = () => {
-        setCurrentEventIndex(prevIndex => (prevIndex === 0 ? promotions.length - 1 : prevIndex - 1));
-    };
-
-    const handleNextEvent = () => {
-        setCurrentEventIndex(prevIndex => (prevIndex === promotions.length - 1 ? 0 : prevIndex + 1));
-    };
-
     const handlePrevDiscount = () => {
         setCurrentDiscountIndex(prevIndex => (prevIndex === 0 ? discounts.length - 1 : prevIndex - 1));
     };
@@ -394,18 +317,14 @@ const Home = () => {
             <Box sx={{ p: 2, mb: 2, paddingTop: 13, height: 400 }}>
                 <Typography variant="h4" mb={2}>이벤트</Typography>
                 <Grid container spacing={2} alignItems="center">
-                    <Grid item>
-                        <IconButton onClick={handlePrevEvent}>
-                            <ArrowBackIcon />
-                        </IconButton>
-                    </Grid>
                     <Grid item xs sx={{ p: 2, mb: 2, height: 390 }}>
-                        <img src={events[currentEventIndex].image} alt={events[currentEventIndex].name} style={{ width: '100%', height: '100%' }} />
-                    </Grid>
-                    <Grid item>
-                        <IconButton onClick={handleNextEvent}>
-                            <ArrowForwardIcon />
-                        </IconButton>
+                        <Carousel cycleNavigation={true} navButtonsAlwaysVisible={true} autoPlay={true}>
+                            {events.map((item,i)=> (
+                                <Paper key={item.id} style={{ width: '100%', height: 390 }}>
+                                    <img src={item.image} alt="" style={{ width: '100%', height: '100%' }}/>
+                                </Paper>
+                            ))}
+                        </Carousel>
                     </Grid>
                 </Grid>
             </Box>
@@ -492,18 +411,14 @@ const Home = () => {
             <Box sx={{ p: 2, mb: 2, marginTop: 1, height: 400 }}>
                 <Typography variant="h4" mb={2}>프로모션 상품</Typography>
                 <Grid container spacing={2} alignItems="center">
-                    <Grid item>
-                        <IconButton onClick={handlePrevPromotion}>
-                            <ArrowBackIcon />
-                        </IconButton>
-                    </Grid>
                     <Grid item xs sx={{ p: 2, mb: 2, height: 390 }}>
-                        <img src={promotions[currentPromotionIndex].image} alt={promotions[currentPromotionIndex].name} style={{ width: '100%', height: '100%' }} />
-                    </Grid>
-                    <Grid item>
-                        <IconButton onClick={handleNextPromotion}>
-                            <ArrowForwardIcon />
-                        </IconButton>
+                        <Carousel cycleNavigation={true} navButtonsAlwaysVisible={true} autoPlay={true}>
+                            {promotions.map((item,i)=> (
+                                <Paper key={item.id} style={{ width: '100%', height: 390 }}>
+                                    <img src={item.image} alt="" style={{ width: '100%', height: '100%' }}/>
+                                </Paper>
+                            ))}
+                        </Carousel>
                     </Grid>
                 </Grid>
             </Box>
