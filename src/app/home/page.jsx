@@ -19,7 +19,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useState } from 'react';
-import {MenuList} from "@mui/joy";
+import {CardOverflow, Chip, Link, MenuList} from "@mui/joy";
 import Box from "@mui/material/Box";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -31,7 +31,6 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Carousel from "react-material-ui-carousel";
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Card from "@mui/joy/Card";
@@ -39,6 +38,9 @@ import AspectRatio from "@mui/joy/AspectRatio";
 import CardContent from "@mui/joy/CardContent";
 import Button from "@mui/joy/Button";
 import ItemsCarousel from "react-items-carousel/src";
+import {blue, pink} from "@mui/material/colors";
+import KeyboardDoubleArrowLeftRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowLeftRounded';
+import KeyboardDoubleArrowRightRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowRightRounded';
 
 
 
@@ -73,13 +75,9 @@ const discounts = [
 ];
 
 const Home = () => {
-    const [activeItemIndex, setActiveItemIndex] = useState(0);
+    const [activeProductIndex, setActiveProductIndex] = useState(0);
+    const [activeDiscountIndex, setActiveDiscountIndex] = useState(0);
     const chevronWidth = 40;
-
-    const [currentProductIndex, setCurrentProductIndex] = useState(0);
-    const [currentPromotionIndex, setCurrentPromotionIndex] = useState(0);
-    const [currentEventIndex, setCurrentEventIndex] = useState(0);
-    const [currentDiscountIndex, setCurrentDiscountIndex] = useState(0);
 
     const Search = styled('div')(({ theme }) => ({
         position: 'relative',
@@ -218,22 +216,6 @@ const Home = () => {
         </Menu>
     );
 
-    const handlePrevProduct = () => {
-        setCurrentProductIndex(prevIndex => (prevIndex === 0 ? products.length - 1 : prevIndex - 1));
-    };
-
-    const handleNextProduct = () => {
-        setCurrentProductIndex(prevIndex => (prevIndex === products.length - 1 ? 0 : prevIndex + 1));
-    };
-
-    const handlePrevDiscount = () => {
-        setCurrentDiscountIndex(prevIndex => (prevIndex === 0 ? discounts.length - 1 : prevIndex - 1));
-    };
-
-    const handleNextDiscount = () => {
-        setCurrentDiscountIndex(prevIndex => (prevIndex === discounts.length - 1 ? 0 : prevIndex + 1));
-    };
-
     return (
         <body style={{margin:0}}>
         <Box>
@@ -314,13 +296,12 @@ const Home = () => {
             </Box>
 
             {/* 이벤트 영역 */}
-            <Box sx={{ p: 2, mb: 2, paddingTop: 13, height: 400 }}>
-                <Typography variant="h4" mb={2}>이벤트</Typography>
+            <Box sx={{ mb: 2, paddingTop: 8, height: 500 }}>
                 <Grid container spacing={2} alignItems="center">
-                    <Grid item xs sx={{ p: 2, mb: 2, height: 390 }}>
+                    <Grid item xs sx={{ mb: 2, height: 500 }}>
                         <Carousel cycleNavigation={true} navButtonsAlwaysVisible={true} autoPlay={true}>
                             {events.map((item,i)=> (
-                                <Paper key={item.id} style={{ width: '100%', height: 390 }}>
+                                <Paper key={item.id} style={{ width: '100%', height: 500 }}>
                                     <img src={item.image} alt="" style={{ width: '100%', height: '100%' }}/>
                                 </Paper>
                             ))}
@@ -331,173 +312,50 @@ const Home = () => {
 
             {/* 상품 목록 */}
             <Container maxWidth="xl">
-                <Box sx={{p: 2, mb: 2, marginTop: 7}}>
+                <Box sx={{p: 2, mb: 2, marginTop: 7, textAlign: 'center' }}>
+                    <Typography variant="h4" mb={2}>오늘의 상품</Typography>
                     <div style={{padding: `0 ${chevronWidth}px`, width: 1200, marginLeft: 90}}>
                         <ItemsCarousel
-                            requestToChangeActive={setActiveItemIndex}
-                            activeItemIndex={activeItemIndex}
+                            requestToChangeActive={setActiveProductIndex}
+                            activeItemIndex={activeProductIndex}
                             numberOfCards={4}
                             gutter={0}
-                            leftChevron={<button>{'<'}</button>}
-                            rightChevron={<button>{'>'}</button>}
+                            leftChevron={<KeyboardDoubleArrowLeftRoundedIcon sx={{ color: blue[500], fontSize: 40}} color="primary"/>}
+                            rightChevron={<KeyboardDoubleArrowRightRoundedIcon sx={{ color: blue[500], fontSize: 40}} color="primary"/>}
                             outsideChevron
                             chevronWidth={chevronWidth}
                         >
-                            <Card sx={{width: 250}}>
-                                <div>
-                                    <Typography level="title-lg">Yosemite National Park</Typography>
-                                    <Typography level="body-sm">April 24 to May 02, 2021</Typography>
-                                </div>
-                                <AspectRatio minHeight="120px" maxHeight="200px">
-                                    <img
-                                        src="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286"
-                                        srcSet="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286&dpr=2 2x"
-                                        loading="lazy"
-                                        alt=""
-                                    />
-                                </AspectRatio>
-                                <CardContent orientation="horizontal">
-                                    <div>
-                                        <Typography level="body-xs">Total price:</Typography>
-                                        <Typography fontSize="lg" fontWeight="lg">
-                                            $2,900
+                            {products.map(card => (
+                                <Card key={card.id} sx={{ width: 245, maxWidth: '100%', boxShadow: 'lg' }}>
+                                    <CardOverflow>
+                                        <AspectRatio sx={{ minWidth: 200 }}>
+                                            <img
+                                                src={card.image}
+                                                srcSet={`${card.image} 2x`}
+                                                loading="lazy"
+                                                alt=""
+                                            />
+                                        </AspectRatio>
+                                    </CardOverflow>
+                                    <CardContent>
+                                        <Typography level="body-xs">Category</Typography>
+                                        <Typography
+                                            level="title-lg"
+                                            sx={{ mt: 1, fontWeight: 'xl' }}
+                                        >
+                                            {card.price}
                                         </Typography>
-                                    </div>
-                                    <Button
-                                        variant="solid"
-                                        size="md"
-                                        color="primary"
-                                        aria-label="Explore Bahamas Islands"
-                                        sx={{ml: 'auto', alignSelf: 'center', fontWeight: 600}}
-                                    >
-                                        Explore
-                                    </Button>
-                                </CardContent>
-                            </Card>
-                            <Card sx={{width: 250}}>
-                                <div>
-                                    <Typography level="title-lg">Yosemite National Park</Typography>
-                                    <Typography level="body-sm">April 24 to May 02, 2021</Typography>
-                                </div>
-                                <AspectRatio minHeight="120px" maxHeight="200px">
-                                    <img
-                                        src="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286"
-                                        srcSet="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286&dpr=2 2x"
-                                        loading="lazy"
-                                        alt=""
-                                    />
-                                </AspectRatio>
-                                <CardContent orientation="horizontal">
-                                    <div>
-                                        <Typography level="body-xs">Total price:</Typography>
-                                        <Typography fontSize="lg" fontWeight="lg">
-                                            $2,900
+                                        <Typography level="body-sm">
+                                            (Only <b>10</b> left in stock!)
                                         </Typography>
-                                    </div>
-                                    <Button
-                                        variant="solid"
-                                        size="md"
-                                        color="primary"
-                                        aria-label="Explore Bahamas Islands"
-                                        sx={{ml: 'auto', alignSelf: 'center', fontWeight: 600}}
-                                    >
-                                        Explore
-                                    </Button>
-                                </CardContent>
-                            </Card>
-                            <Card sx={{width: 250}}>
-                                <div>
-                                    <Typography level="title-lg">Yosemite National Park</Typography>
-                                    <Typography level="body-sm">April 24 to May 02, 2021</Typography>
-                                </div>
-                                <AspectRatio minHeight="120px" maxHeight="200px">
-                                    <img
-                                        src="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286"
-                                        srcSet="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286&dpr=2 2x"
-                                        loading="lazy"
-                                        alt=""
-                                    />
-                                </AspectRatio>
-                                <CardContent orientation="horizontal">
-                                    <div>
-                                        <Typography level="body-xs">Total price:</Typography>
-                                        <Typography fontSize="lg" fontWeight="lg">
-                                            $2,900
-                                        </Typography>
-                                    </div>
-                                    <Button
-                                        variant="solid"
-                                        size="md"
-                                        color="primary"
-                                        aria-label="Explore Bahamas Islands"
-                                        sx={{ml: 'auto', alignSelf: 'center', fontWeight: 600}}
-                                    >
-                                        Explore
-                                    </Button>
-                                </CardContent>
-                            </Card>
-                            <Card sx={{width: 250}}>
-                                <div>
-                                    <Typography level="title-lg">Yosemite National Park</Typography>
-                                    <Typography level="body-sm">April 24 to May 02, 2021</Typography>
-                                </div>
-                                <AspectRatio minHeight="120px" maxHeight="200px">
-                                    <img
-                                        src="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286"
-                                        srcSet="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286&dpr=2 2x"
-                                        loading="lazy"
-                                        alt=""
-                                    />
-                                </AspectRatio>
-                                <CardContent orientation="horizontal">
-                                    <div>
-                                        <Typography level="body-xs">Total price:</Typography>
-                                        <Typography fontSize="lg" fontWeight="lg">
-                                            $2,900
-                                        </Typography>
-                                    </div>
-                                    <Button
-                                        variant="solid"
-                                        size="md"
-                                        color="primary"
-                                        aria-label="Explore Bahamas Islands"
-                                        sx={{ml: 'auto', alignSelf: 'center', fontWeight: 600}}
-                                    >
-                                        Explore
-                                    </Button>
-                                </CardContent>
-                            </Card>
-                            <Card sx={{width: 250}}>
-                                <div>
-                                    <Typography level="title-lg">Yosemite National Park</Typography>
-                                    <Typography level="body-sm">April 24 to May 02, 2021</Typography>
-                                </div>
-                                <AspectRatio minHeight="120px" maxHeight="200px">
-                                    <img
-                                        src="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286"
-                                        srcSet="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286&dpr=2 2x"
-                                        loading="lazy"
-                                        alt=""
-                                    />
-                                </AspectRatio>
-                                <CardContent orientation="horizontal">
-                                    <div>
-                                        <Typography level="body-xs">Total price:</Typography>
-                                        <Typography fontSize="lg" fontWeight="lg">
-                                            $2,900
-                                        </Typography>
-                                    </div>
-                                    <Button
-                                        variant="solid"
-                                        size="md"
-                                        color="primary"
-                                        aria-label="Explore Bahamas Islands"
-                                        sx={{ml: 'auto', alignSelf: 'center', fontWeight: 600}}
-                                    >
-                                        Explore
-                                    </Button>
-                                </CardContent>
-                            </Card>
+                                    </CardContent>
+                                    <CardOverflow>
+                                        <Button variant="solid" color="primary" size="lg">
+                                            Add to cart
+                                        </Button>
+                                    </CardOverflow>
+                                </Card>
+                            ))}
                         </ItemsCarousel>
                     </div>
                 </Box>
@@ -505,52 +363,63 @@ const Home = () => {
 
             {/* 할인 상품 영역 */}
             <Container maxWidth="xl">
-                <Box sx={{p: 2, mb: 2, marginTop: 7}}>
-                    <Grid container spacing={2} alignItems="center">
-                        <Grid item xs={1}>
-                            {currentDiscountIndex !== 0 && (
-                                <IconButton onClick={handlePrevDiscount}>
-                                    <ArrowBackIcon/>
-                                </IconButton>
-                            )}
-                        </Grid>
-                        <Grid item xs={10}>
-                            <Typography variant="h4" mb={2}>할인 상품</Typography>
-                            <Grid container spacing={2}>
-                                {discounts.slice(currentDiscountIndex, currentDiscountIndex + 4).map((discount, index) => (
-                                    <Grid key={discount.id} item xs={6} sm={3}>
-                                        {/* 할인 상품 카드 */}
-                                        <Paper sx={{height: 270, width: 240, marginBottom: 2}}>
-                                            <img src={discount.image} alt={discount.name}
-                                                 style={{width: '100%', height: '100%'}}/>
-                                        </Paper>
-                                        <Paper sx={{height: 80, width: 220}}>
-                                            <Typography variant="h6">{discount.name}</Typography>
-                                            <Typography variant="body1">{discount.price}</Typography>
-                                        </Paper>
-                                    </Grid>
-                                ))}
-                            </Grid>
-                        </Grid>
-                        <Grid item xs={1} sx={{textAlign: 'right'}}>
-                            {discounts.length > 4 && currentDiscountIndex !== discounts.length - 4 && (
-                                <IconButton onClick={handleNextDiscount}>
-                                    <ArrowForwardIcon/>
-                                </IconButton>
-                            )}
-                        </Grid>
-                    </Grid>
+                <Box sx={{p: 2, mb: 2, marginTop: 7, textAlign: 'center'}}>
+                    <Typography variant="h4" mb={2}>할인 상품</Typography>
+                    <div style={{padding: `0 ${chevronWidth}px`, width: 1200, marginLeft: 90}}>
+                        <ItemsCarousel
+                            requestToChangeActive={setActiveDiscountIndex}
+                            activeItemIndex={activeDiscountIndex}
+                            numberOfCards={4}
+                            gutter={0}
+                            leftChevron={<KeyboardDoubleArrowLeftRoundedIcon sx={{ color: blue[500], fontSize: 40}} color="primary"/>}
+                            rightChevron={<KeyboardDoubleArrowRightRoundedIcon sx={{ color: blue[500], fontSize: 40}} color="primary"/>}
+                            outsideChevron
+                            chevronWidth={chevronWidth}
+                        >
+                            {discounts.map(card => (
+                                <Card key={card.id} sx={{ width: 245, maxWidth: '100%', boxShadow: 'lg' }}>
+                                    <CardOverflow>
+                                        <AspectRatio sx={{ minWidth: 200 }}>
+                                            <img
+                                                src={card.image}
+                                                srcSet={`${card.image} 2x`}
+                                                loading="lazy"
+                                                alt=""
+                                            />
+                                        </AspectRatio>
+                                    </CardOverflow>
+                                    <CardContent>
+                                        <Typography level="body-xs">Category</Typography>
+                                        <Typography
+                                            level="title-lg"
+                                            sx={{ mt: 1, fontWeight: 'xl' }}
+                                        >
+                                            {card.price}
+                                        </Typography>
+                                        <Typography level="body-sm">
+                                            (Only <b>10</b> left in stock!)
+                                        </Typography>
+                                    </CardContent>
+                                    <CardOverflow>
+                                        <Button variant="solid" color="primary" size="lg">
+                                            Add to cart
+                                        </Button>
+                                    </CardOverflow>
+                                </Card>
+                            ))}
+                        </ItemsCarousel>
+                    </div>
                 </Box>
             </Container>
 
             {/* 프로모션 영역 */}
-            <Box sx={{p: 2, mb: 2, marginTop: 1, height: 400}}>
+            <Box sx={{mb: 2, marginTop: 1, height: 500}}>
                 <Typography variant="h4" mb={2}>프로모션 상품</Typography>
                 <Grid container spacing={2} alignItems="center">
-                    <Grid item xs sx={{p: 2, mb: 2, height: 390}}>
+                    <Grid item xs sx={{mb: 2, height: 500}}>
                         <Carousel cycleNavigation={true} navButtonsAlwaysVisible={true} autoPlay={true}>
                             {promotions.map((item, i) => (
-                                <Paper key={item.id} style={{width: '100%', height: 390}}>
+                                <Paper key={item.id} style={{width: '100%', height: 500}}>
                                     <img src={item.image} alt="" style={{width: '100%', height: '100%'}}/>
                                 </Paper>
                             ))}
