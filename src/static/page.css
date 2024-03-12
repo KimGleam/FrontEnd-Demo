@@ -1072,7 +1072,7 @@ a {
     font-weight: bold;
     line-height: 1.43;
     letter-spacing: -0.5px;
-    color: rgb(51, 51, 51);
+    color: #4797e1;
     margin-left: 6px;
 }
 
@@ -1132,3 +1132,22 @@ html, button, input, select, textarea {
     opacity: 1;
 }
 
+.css-1le17tz {
+    z-index: 20;
+    position: sticky;
+    top: 56px;
+    width: 1010px;
+    box-shadow: rgb(221, 221, 221) 0px -0.5px 0px 0px inset;
+    background-color: rgb(255, 255, 255);
+    margin-top: 50px;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+    display: block;
+}
+
+.css-tse2s2 {
+    display: flex;
+    flex-wrap: wrap;
+    height: 60px;
+}
