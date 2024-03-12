@@ -144,6 +144,7 @@ export default function Detail() {
     const [selectedCategory, setSelectedCategory] = useState('');
     const packageTypes = Object.keys(productInfo.packageType);
 
+
     const handleCategoryButtonClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -170,7 +171,6 @@ export default function Detail() {
     };
 
     return (
-        <>
         <Container>
             {/* 헤더 */}
             <Grid container justifyContent="space-between" alignItems="center" sx={{py: 2}}>
@@ -325,10 +325,9 @@ export default function Detail() {
             <ProductNav />
             {/* 드롭다운 상품 선택 영역 */}
             <SelectProduct count={count} totalPrice={totalPrice} handleCountChange={handleCountChange} productInfo={productInfo} />
-            <ScrollToTopButton />
-        </Container>
             {/* 공통 푸터 영역 */}
             <Footer />
-        </>
+           <ScrollToTopButton />
+        </Container>
     );
 }
