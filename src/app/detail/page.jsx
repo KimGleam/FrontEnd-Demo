@@ -24,6 +24,7 @@ import Footer from '../../components/footer';
 import ScrollToTopButton from '../../components/ScrollToTopButton';
 import ProductNav from '../../components/ProductNav';
 import CartItem from '../../components/CartItem';
+import Header from "../../components/Header";
 import "../../static/page.css";
 
 const searchCategories = [
@@ -171,163 +172,132 @@ export default function Detail() {
     };
 
     return (
-        <Container>
-            {/* 헤더 */}
-            <Grid container justifyContent="space-between" alignItems="center" sx={{py: 2}}>
-                <Grid item>
-                    <IconButton color="inherit" sx={{mr: 2}} onClick={handleCategoryButtonClick}>
-                        <MenuIcon/>
-                    </IconButton>
-                    <FormControl variant="outlined" sx={{marginLeft: 10}}>
-                        <InputLabel id="category-label">Category</InputLabel>
-                        <Select
-                            labelId="category-label"
-                            id="category"
-                            value={selectedCategory}
-                            onChange={handleCategoryChange}
-                            label="Category"
-                            sx={{width: 200}}
-                        >
-                            {searchCategories.map((category) => (
-                                <MenuItem key={category.id} value={category.id}>
-                                    {category.name}
-                                </MenuItem>
-                            ))}
-                        </Select>
-                    </FormControl>
-                    <TextField id="search" label="Search" variant="outlined" sx={{ml: 1, width: 600}}/>
-                    <IconButton color="inherit">
-                        <SearchIcon sx={{width: 40, height: 40}}/>
-                    </IconButton>
-                </Grid>
-                <Grid item>
-                    <IconButton color="inherit">
-                        <ShoppingCartIcon sx={{width: 40, height: 40}}/>
-                    </IconButton>
-                    <IconButton color="inherit">
-                        <AccountCircleIcon sx={{width: 40, height: 40}}/>
-                    </IconButton>
-                </Grid>
-            </Grid>
+        <>
+            <Container sx={{marginTop: 10}}>
+                {/* 헤더 */}
+                <Header></Header>
 
-
-            {/* 카테고리 메뉴 */}
-            <Popover
-                open={Boolean(anchorEl)}
-                anchorEl={anchorEl}
-                onClose={handleCategoryClose}
-                anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
-                }}
-                transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                }}
-            >
-                <MenuList autoFocusItem={Boolean(anchorEl)} id="menu-list-grow" onKeyDown={handleCategoryClose}
-                          sx={{width: 170, height: 300}}>
-                    {categories.map((category) => (
-                        <MenuItem
-                            key={category.id}
-                        >
-                            <ListItemText primary={category.name}/>
-                            {category.children.length > 0 && (
-                                <IconButton size="small">
-                                    <ArrowForwardIcon/>
-                                </IconButton>
-                            )}
-                        </MenuItem>
-                    ))}
-                </MenuList>
-            </Popover>
-            <main className="css-1eoy87d e17iylht5">
-                <Box mr={1} className="css-12z0wuy MuiBox-root css-12z0wuy">
-                    <img src={productDescription.filePath} alt="상품 사진" sizes="100vw"/>
-                </Box>
-                <Box flex="1">
-                    <div className="css-1qy9c46">
-                        <h1 className="css-79gmk3">{productInfo.name}</h1>
-                        <h2 className="css-ki8mlo">{productInfo.note}</h2>
-                        <button className=" css-57nu3d eaxuegm1"></button>
-                    </div>
-                    <h2 className="css-abwjr2">
-                        <span className="css-5nirzt">{productInfo.discountRate}</span>
-                        <span className="css-9pf1ze">{productInfo.discountPrice}</span>
-                        <span className="css-1x9cx9j">원</span>
-                    </h2>
-                    <span className="css-1e1rd4p e1q8tigr0"><span>{productInfo.cost}원</span>
+                {/* 카테고리 메뉴 */}
+                <Popover
+                    open={Boolean(anchorEl)}
+                    anchorEl={anchorEl}
+                    onClose={handleCategoryClose}
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                    }}
+                >
+                    <MenuList autoFocusItem={Boolean(anchorEl)} id="menu-list-grow" onKeyDown={handleCategoryClose}
+                              sx={{width: 170, height: 300}}>
+                        {categories.map((category) => (
+                            <MenuItem
+                                key={category.id}
+                            >
+                                <ListItemText primary={category.name}/>
+                                {category.children.length > 0 && (
+                                    <IconButton size="small">
+                                        <ArrowForwardIcon/>
+                                    </IconButton>
+                                )}
+                            </MenuItem>
+                        ))}
+                    </MenuList>
+                </Popover>
+                <main className="css-1eoy87d e17iylht5">
+                    <Box mr={1} className="css-12z0wuy MuiBox-root css-12z0wuy">
+                        <img src={productDescription.filePath} alt="상품 사진" sizes="100vw"/>
+                    </Box>
+                    <Box flex="1">
+                        <div className="css-1qy9c46">
+                            <h1 className="css-79gmk3">{productInfo.name}</h1>
+                            <h2 className="css-ki8mlo">{productInfo.note}</h2>
+                            <button className=" css-57nu3d eaxuegm1"></button>
+                        </div>
+                        <h2 className="css-abwjr2">
+                            <span className="css-5nirzt">{productInfo.discountRate}</span>
+                            <span className="css-9pf1ze">{productInfo.discountPrice}</span>
+                            <span className="css-1x9cx9j">원</span>
+                        </h2>
+                        <span className="css-1e1rd4p e1q8tigr0"><span>{productInfo.cost}원</span>
                     </span>
-                    <p className="css-1jali72 e17iylht2">원산지: 상품설명/상세정보 참조</p>
-                    <div className="css-toq1xn e1hhkg2t2">로그인 후, 적립 혜택이 제공됩니다.</div>
+                        <p className="css-1jali72 e17iylht2">원산지: 상품설명/상세정보 참조</p>
+                        <div className="css-toq1xn e1hhkg2t2">로그인 후, 적립 혜택이 제공됩니다.</div>
 
-                    <ul className="css-iqoq9n">
-                        <li className="css-e6zlnr">
-                            <dt className="css-lytdfk">배송</dt>
-                            <dd className="css-1k8t52o">
-                                <p className="css-c02hqi">{productInfo.delivery.type}</p>
-                                <p className="css-uy94b2">{productInfo.delivery.info}</p>
-                            </dd>
-                        </li>
-                        <li className="css-e6zlnr">
-                            <dt className="css-lytdfk">판매자</dt>
-                            <dd className="css-1k8t52o"><p className="css-c02hqi e6qx2kx1">{productInfo.seller}</p>
-                            </dd>
-                        </li>
-                        <li className="css-e6zlnr">
-                            <dt className="css-lytdfk">포장타입</dt>
-                            <dd className="css-1k8t52o">
-                                {/*<p className="css-c02hqi e6qx2kx1">냉장 (종이포장)</p>*/}
-                                {/*<p className="css-uy94b2">택배배송은 에코 포장이 스티로폼으로 대체됩니다.</p>*/}
-                                {packageTypes.map((info, index) => (
-                                    <p className={index === 0 ? "css-c02hqi e6qx2kx1" : "css-uy94b2"} key={info}>
-                                        {productInfo.packageType[info]}
-                                    </p>
-                                ))}
-                            </dd>
-                        </li>
-                        <li className="css-e6zlnr">
-                            <dt className="css-lytdfk">판매단위</dt>
-                            <dd className="css-1k8t52o"><p className="css-c02hqi">{productInfo.salesUnit}</p>
-                            </dd>
-                        </li>
-                        <li className="css-e6zlnr">
-                            <dt className="css-lytdfk">중량/용량</dt>
-                            <dd className="css-1k8t52o"><p className="css-c02hqi">{productInfo.weight}</p>
-                            </dd>
-                        </li>
-                        <li className="css-e6zlnr">
-                            <dt className="css-lytdfk">알레르기정보</dt>
-                            <dd className="css-1k8t52o"><p className="css-c02hqi"> {productInfo.allergyInfo} </p></dd>
-                        </li>
-                        <li className="css-e6zlnr">
-                            <dt className="css-lytdfk">소비기한(또는 유통기한)정보</dt>
-                            <dd className="css-1k8t52o">
-                                <p className="css-c02hqi">{productInfo.expirationDate}</p>
-                            </dd>
-                        </li>
-                        <li className="css-e6zlnr">
-                            <dt className="css-lytdfk">축산물 이력정보</dt>
-                            <dd className="css-1k8t52o">
-                                <p className="css-c02hqi">{productInfo.historyInfo}</p>
-                            </dd>
-                        </li>
-                        <li className="css-e6zlnr">
-                            <dt className="css-lytdfk">안내사항</dt>
-                            <dd className="css-1k8t52o">
-                                <p className="css-c02hqi">{productInfo.notification}</p>
-                            </dd>
-                        </li>
-                    </ul>
-                    <CartItem count={count} totalPrice={totalPrice} handleCountChange={handleCountChange} productInfo={productInfo} />
-                </Box>
-            </main>
-            <ProductNav />
-            {/* 드롭다운 상품 선택 영역 */}
-            <SelectProduct count={count} totalPrice={totalPrice} handleCountChange={handleCountChange} productInfo={productInfo} />
+                        <ul className="css-iqoq9n">
+                            <li className="css-e6zlnr">
+                                <dt className="css-lytdfk">배송</dt>
+                                <dd className="css-1k8t52o">
+                                    <p className="css-c02hqi">{productInfo.delivery.type}</p>
+                                    <p className="css-uy94b2">{productInfo.delivery.info}</p>
+                                </dd>
+                            </li>
+                            <li className="css-e6zlnr">
+                                <dt className="css-lytdfk">판매자</dt>
+                                <dd className="css-1k8t52o"><p className="css-c02hqi e6qx2kx1">{productInfo.seller}</p>
+                                </dd>
+                            </li>
+                            <li className="css-e6zlnr">
+                                <dt className="css-lytdfk">포장타입</dt>
+                                <dd className="css-1k8t52o">
+                                    {/*<p className="css-c02hqi e6qx2kx1">냉장 (종이포장)</p>*/}
+                                    {/*<p className="css-uy94b2">택배배송은 에코 포장이 스티로폼으로 대체됩니다.</p>*/}
+                                    {packageTypes.map((info, index) => (
+                                        <p className={index === 0 ? "css-c02hqi e6qx2kx1" : "css-uy94b2"} key={info}>
+                                            {productInfo.packageType[info]}
+                                        </p>
+                                    ))}
+                                </dd>
+                            </li>
+                            <li className="css-e6zlnr">
+                                <dt className="css-lytdfk">판매단위</dt>
+                                <dd className="css-1k8t52o"><p className="css-c02hqi">{productInfo.salesUnit}</p>
+                                </dd>
+                            </li>
+                            <li className="css-e6zlnr">
+                                <dt className="css-lytdfk">중량/용량</dt>
+                                <dd className="css-1k8t52o"><p className="css-c02hqi">{productInfo.weight}</p>
+                                </dd>
+                            </li>
+                            <li className="css-e6zlnr">
+                                <dt className="css-lytdfk">알레르기정보</dt>
+                                <dd className="css-1k8t52o"><p className="css-c02hqi"> {productInfo.allergyInfo} </p>
+                                </dd>
+                            </li>
+                            <li className="css-e6zlnr">
+                                <dt className="css-lytdfk">소비기한(또는 유통기한)정보</dt>
+                                <dd className="css-1k8t52o">
+                                    <p className="css-c02hqi">{productInfo.expirationDate}</p>
+                                </dd>
+                            </li>
+                            <li className="css-e6zlnr">
+                                <dt className="css-lytdfk">축산물 이력정보</dt>
+                                <dd className="css-1k8t52o">
+                                    <p className="css-c02hqi">{productInfo.historyInfo}</p>
+                                </dd>
+                            </li>
+                            <li className="css-e6zlnr">
+                                <dt className="css-lytdfk">안내사항</dt>
+                                <dd className="css-1k8t52o">
+                                    <p className="css-c02hqi">{productInfo.notification}</p>
+                                </dd>
+                            </li>
+                        </ul>
+                        <CartItem count={count} totalPrice={totalPrice} handleCountChange={handleCountChange}
+                                  productInfo={productInfo}/>
+                    </Box>
+                </main>
+                <ProductNav/>
+                {/* 드롭다운 상품 선택 영역 */}
+                <SelectProduct count={count} totalPrice={totalPrice} handleCountChange={handleCountChange}
+                               productInfo={productInfo}/>
+                <ScrollToTopButton/>
+            </Container>
             {/* 공통 푸터 영역 */}
-            <Footer />
-           <ScrollToTopButton />
-        </Container>
+            <Footer/>
+        </>
     );
 }
