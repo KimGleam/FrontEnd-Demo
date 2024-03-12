@@ -233,27 +233,8 @@ html, button, input, select, textarea {
     font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
 }
 
-body, html {
-    height: 100%;
-}
-
-html {
-    touch-action: manipulation;
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
-}
-
-html {
-    line-height: 1.15;
-    -webkit-tap-highlight-color: transparent;
-}
-
 :root {
     view-transition-name: root;
-}
-
-html {
-    display: block;
 }
 
 .css-1k8t52o.epzddad0 {
@@ -369,14 +350,6 @@ li {
     padding-top: 4px;
 }
 
-:root {
-    --swiper-theme-color: #4797e1;
-}
-
-html, button, input, select, textarea {
-    font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
-}
-
 body, html {
     height: 100%;
 }
@@ -452,10 +425,6 @@ html {
 
 .css-1x9cx9j {
     font-size: 20px;
-}
-
-:root {
-    view-transition-name: root;
 }
 
 html {
@@ -706,10 +675,6 @@ img, legend {
     margin-top: 8px;
 }
 
-html, button, input, select, textarea {
-    font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
-}
-
 svg:not(:root) {
     overflow: hidden;
 }
@@ -848,10 +813,6 @@ svg:not(:root) {
     word-break: break-word;
 }
 
-html, button, input, select, textarea {
-    font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
-}
-
 body, button, input, select, textarea {
     font-size: 14px;
     color: #333;
@@ -909,7 +870,7 @@ img, legend {
 }
 
 canvas, img, video {
-    max-width: 100%;
+    max-width: 90%;
 }
 
 .css-175n8cp {
@@ -943,10 +904,6 @@ canvas, img, video {
     width: 900px;
     margin: 0px auto;
     font-family: "Noto Sans";
-}
-
-html, button, input, select, textarea {
-    font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
 }
 
 .css-1d3si1p {
@@ -1117,10 +1074,6 @@ a {
     font-weight: 500;
 }
 
-html, button, input, select, textarea {
-    font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
-}
-
 .css-8vh040 {
     position: fixed;
     z-index: 10;
@@ -1136,7 +1089,7 @@ html, button, input, select, textarea {
     z-index: 20;
     position: sticky;
     top: 56px;
-    width: 1010px;
+    /*width: 1010px;*/
     box-shadow: rgb(221, 221, 221) 0px -0.5px 0px 0px inset;
     background-color: rgb(255, 255, 255);
     margin-top: 50px;
@@ -1147,7 +1100,54 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 .css-tse2s2 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     height: 60px;
+}
+
+ul {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.css-1tzhzcg {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    border-width: 1px 0 1px 1px;
+    border-color: #eee;
+    border-style: solid;
+    background-color: #fafafa;
+}
+
+.css-1t0ft7s {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 100%;
 }

@@ -23,8 +23,8 @@ const SelectProduct = ({ count, totalPrice, handleCountChange, productInfo }) =>
                             <div className="css-1dltvla e1bhvj4s10">
                                 <div className="css-1x17g94 e1bhvj4s9">
                                     <span className="css-jpj1ph e1bhvj4s8">
-                                        <span className="css-gad126 e1bhvj4s7">[메종엠오] 마들렌 쇼콜라 아파르타제</span>
-                                        <span className="css-u0s929 e1bhvj4s6">적립제외상품</span>
+                                        <span className="css-gad126 e1bhvj4s7">{productInfo.name}</span>
+                                        {!productInfo.accumulateYn && <span className="css-u0s929 e1bhvj4s6">적립제외상품</span>}
                                     </span>
                                     <span className="css-mk4uq1 e1bhvj4s5"><div className="css-nx0orh e1cqr3m40">
                                         <button type="button" aria-label="수량내리기" className="css-1e90glc e1hx75jb0"
