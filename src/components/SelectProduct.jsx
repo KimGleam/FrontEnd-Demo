@@ -12,10 +12,10 @@ const SelectProduct = ({ count, totalPrice, handleCountChange, productInfo }) =>
     return (
         <div className="css-1absul7 e1vpfwzd4">
             <div className="css-1danc6e e1vpfwzd3">
-                <button className="css-137fsc1 e1ssqoh62" onClick={toggleVisibility}>
+                <button className={isVisible ? "css-137fsc1 e1ssqoh62" : "css-6fc6cj e1ssqoh62"} onClick={toggleVisibility}>
                     <span className="css-1d3si1p e1ssqoh61">상품 선택</span>
-                    {isVisible ? <ArrowDropDownIcon style={{ color: 'white' }} /> : <ArrowDropUpIcon style={{ color: 'white' }} />}
-                    {/*<img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgICA8cGF0aCBpZD0iMHFhNjIzN2FlYSIgZD0iTTguOCA2LjRIMTZ2Ny4yIi8+CiAgICA8L2RlZnM+CiAgICA8ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiLz4KICAgICAgICA8dXNlIHN0cm9rZT0iI0ZGRiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIiB0cmFuc2Zvcm09InNjYWxlKDEgLTEpIHJvdGF0ZSgtNDUgLTExLjc0MiAwKSIgeGxpbms6aHJlZj0iIzBxYTYyMzdhZWEiLz4KICAgIDwvZz4KPC9zdmc+Cg==" alt="open_arrow" className="css-18jsklt e1ssqoh60"/>*/}
+                    {isVisible ? <ArrowDropDownIcon style={{color: 'white'}}/> :
+                        <ArrowDropUpIcon style={{color: 'white'}}/>}
                 </button>
                 {isVisible && (
                     <div>
