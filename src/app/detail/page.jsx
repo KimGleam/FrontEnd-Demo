@@ -25,6 +25,7 @@ import ScrollToTopButton from '../../components/ScrollToTopButton';
 import ProductNav from '../../components/ProductNav';
 import CartItem from '../../components/CartItem';
 import "../../static/page.css";
+import Header from "../../components/Header";
 
 const searchCategories = [
     {id: 1, name: 'Category 1'},
@@ -171,45 +172,9 @@ export default function Detail() {
     };
 
     return (
-        <Container>
+        <Container sx={{marginTop:10}}>
             {/* 헤더 */}
-            <Grid container justifyContent="space-between" alignItems="center" sx={{py: 2}}>
-                <Grid item>
-                    <IconButton color="inherit" sx={{mr: 2}} onClick={handleCategoryButtonClick}>
-                        <MenuIcon/>
-                    </IconButton>
-                    <FormControl variant="outlined" sx={{marginLeft: 10}}>
-                        <InputLabel id="category-label">Category</InputLabel>
-                        <Select
-                            labelId="category-label"
-                            id="category"
-                            value={selectedCategory}
-                            onChange={handleCategoryChange}
-                            label="Category"
-                            sx={{width: 200}}
-                        >
-                            {searchCategories.map((category) => (
-                                <MenuItem key={category.id} value={category.id}>
-                                    {category.name}
-                                </MenuItem>
-                            ))}
-                        </Select>
-                    </FormControl>
-                    <TextField id="search" label="Search" variant="outlined" sx={{ml: 1, width: 600}}/>
-                    <IconButton color="inherit">
-                        <SearchIcon sx={{width: 40, height: 40}}/>
-                    </IconButton>
-                </Grid>
-                <Grid item>
-                    <IconButton color="inherit">
-                        <ShoppingCartIcon sx={{width: 40, height: 40}}/>
-                    </IconButton>
-                    <IconButton color="inherit">
-                        <AccountCircleIcon sx={{width: 40, height: 40}}/>
-                    </IconButton>
-                </Grid>
-            </Grid>
-
+            <Header></Header>
 
             {/* 카테고리 메뉴 */}
             <Popover
