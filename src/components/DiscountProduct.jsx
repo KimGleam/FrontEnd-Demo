@@ -42,7 +42,7 @@ const DiscountProduct = () => {
                         chevronWidth={chevronWidth}
                     >
                         {discounts.map(card => (
-                            <Card key={card.id} sx={{ width: 245, maxWidth: '100%', boxShadow: 'lg' }}>
+                            <Card key={card.id} sx={{ width: 260, maxWidth: '100%', boxShadow: 'lg' }}>
                                 <CardOverflow>
                                     <AspectRatio sx={{ minWidth: 200 }}>
                                         <img

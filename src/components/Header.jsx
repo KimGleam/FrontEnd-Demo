@@ -60,15 +60,17 @@ const Header = () => {
         pointerEvents: 'none',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     }));
 
     const StyledInputBase = styled(InputBase)(({ theme }) => ({
-        color: 'inherit',
+        color:'black',
+        border: 'solid 1px #0a6aca',
+        borderRadius: '10px',
         '& .MuiInputBase-input': {
             padding: theme.spacing(1, 1, 1, 0),
             // vertical padding + font size from searchIcon
-            paddingLeft: `calc(1em + ${theme.spacing(3)})`,
+            paddingLeft: `calc(1em + ${theme.spacing(0.1)})`,
             transition: theme.transitions.create('width'),
             width: '100%',
             [theme.breakpoints.up('md')]: {
@@ -153,14 +155,14 @@ const Header = () => {
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="fixed">
+            <AppBar position="fixed" sx={{background:'white'}}>
                 <Toolbar sx={{marginLeft:30, marginRight:30}}>
                     <IconButton
                         size="large"
                         edge="start"
                         color="inherit"
                         aria-label="open drawer"
-                        sx={{ mr: 2 }}
+                        sx={{ mr: 2, color:'#0a6aca'}}
                     >
                         <MenuIcon />
                     </IconButton>
@@ -168,14 +170,14 @@ const Header = () => {
                         variant="h6"
                         noWrap
                         component="div"
-                        sx={{ display: { xs: 'none', sm: 'block' } }}
+                        sx={{ display: { xs: 'none', sm: 'block', color:'#0a6aca' } }}
                     >
-                        MUI
+                        Double U Mall
                     </Typography>
-                    <Search sx={{}}>
-                        <SearchIconWrapper>
-                            <SearchIcon />
-                        </SearchIconWrapper>
+                    <Search>
+                        {/*<SearchIconWrapper >
+                            <SearchIcon sx={{color:'black'}}/>
+                        </SearchIconWrapper>*/}
                         <StyledInputBase
                             placeholder="Search…"
                             inputProps={{ 'aria-label': 'search' }}
@@ -185,7 +187,7 @@ const Header = () => {
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
                             <Badge badgeContent={4} color="error">
-                                <MailIcon />
+                                <MailIcon sx={{color:'black'}}/>
                             </Badge>
                         </IconButton>
                         <IconButton
@@ -194,7 +196,7 @@ const Header = () => {
                             color="inherit"
                         >
                             <Badge badgeContent={17} color="error">
-                                <NotificationsIcon />
+                                <NotificationsIcon sx={{color:'black'}} />
                             </Badge>
                         </IconButton>
                         <IconButton
@@ -206,7 +208,7 @@ const Header = () => {
                             onClick={handleProfileMenuOpen}
                             color="inherit"
                         >
-                            <AccountCircle />
+                            <AccountCircle sx={{color:'black'}}/>
                         </IconButton>
                     </Box>
                     <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
