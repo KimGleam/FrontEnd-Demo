@@ -3,36 +3,21 @@
 import React, {useState} from "react";
 import {
     Container,
-    FormControl,
-    Grid,
     IconButton,
-    InputLabel, ListItemText,
+    ListItemText,
     MenuItem,
     Popover,
-    Select,
-    TextField
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import {MenuList} from "@mui/joy";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Box from "@mui/material/Box";
-import SelectProduct from '../../components/SelectProduct';
 import Footer from '../../components/footer';
 import ScrollToTopButton from '../../components/ScrollToTopButton';
-import ProductNav from '../../components/ProductNav';
-import CartItem from '../../components/CartItem';
+import InfoNaviBar from '../../components/product/InfoNaviBar';
+import SelectItem from '../../components/product/SelectItem';
+import SelectItemTab from '../../components/product/SelectItemTab';
 import Header from "../../components/Header";
 import "../../static/page.css";
-
-const searchCategories = [
-    {id: 1, name: 'Category 1'},
-    {id: 2, name: 'Category 2'},
-    {id: 3, name: 'Category 3'},
-    {id: 4, name: 'Category 4'}
-];
 
 const categories = [
     {
@@ -101,17 +86,6 @@ const categories = [
     }
 ];
 
-const review = [
-    {
-        id: 1,
-        authorId: '김태욱',
-        content: '덕분에 마음껏 저질렀습니다..',
-        writeDate: '2024-03-07 00:00:00',
-        updateDate: '2024-03-07 00:01:23',
-        helpfulCount: 2,
-    }
-];
-
 const productInfo = {
     id: 1,
     name: '[태우한우] 1+ 한우 안심 스테이크/구이 200g (냉장)',
@@ -124,27 +98,44 @@ const productInfo = {
     seller: '짱순전사',
     delivery: {type: '샛별배송', info: '23시 전 주문 시 내일 아침 7시 전 도착 (대구·부산·울산 샛별배송 운영시간 별도 확인)'},
     weight: '200g',
-    allergyInfo: '- 소고기 함유\n    ' +
-        '- 이 제품은 돼지고기를 사용한 제품과 같은 제조시설에서 제조하고 있습니다.',
+    allergyInfo: '- 소고기 함유\n- 이 제품은 돼지고기를 사용한 제품과 같은 제조시설에서 제조하고 있습니다.',
     expirationDate: '포장일로부터 최대 8일 이내 제품을 보내드립니다.',
     historyInfo: '이력번호가 표시된 제품이며, 이력번호는 수령하시는 상품 패키지에서 확인 가능합니다.',
     notification: '정육 상품의 특성상 중량은 2%내외의 차이가 발생할 수 있습니다. 보관기간이 신선도에 많은 영향을 주는 정육식품이기 때문에 수령후 최대한 빠른 시일내에 섭취를 권장드립니다. 중량에 따라 작은 조각이 함께 포장될 수 있습니다.',
-    accumulateYn: false
+    accumulateYn: false,
+    menu: [
+        { index: 1, name: '[태우한우] 1+ 한우 안심 스테이크/구이 200g (냉장)', cost: '23,000', discountPrice: '18,400' },
+        { index: 2, name: '[태우한우] 1+ 한우 안심 스테이크/구이 600g (냉장)', cost: '52,000', discountPrice: '41,600'  }
+    ]
 };
 
 const productDescription = {
-    content: '어디서도 찾아볼 수 없었던 이 시대 최고의 .. 마음껏 저질러보세요...★',
-    filePath: 'https://product-image.kurly.com/cdn-cgi/image/fit=crop,width=720,height=936,quality=85/product/image/c1ea8fff-29d9-4e12-b2f1-667d76e2bdc9.jpeg'
+    id: 1,
+    fileInfo: [
+        {
+            sequenceNum: 1,
+            path: 'https://product-image.kurly.com/cdn-cgi/image/fit=crop,width=720,height=936,quality=85/product/image/c1ea8fff-29d9-4e12-b2f1-667d76e2bdc9.jpeg'
+        },
+        {
+            sequenceNum: 2,
+            path: '사진 경로 2'
+        },
+        {
+            sequenceNum: 3,
+            path: '사진 경로 3'
+        }
+    ]
 };
 
 export default function Detail() {
     const [relationIndex, setRelationIndex] = useState(0);
-    const [count, setCount] = useState(1);
-    const [totalPrice, setTotalPrice] = useState('18,400');
+    // const [count, setCount] = useState(1);
+    const count = [];
+    const [totalPrice, setTotalPrice] = useState('');
     const [anchorEl, setAnchorEl] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState('');
     const packageTypes = Object.keys(productInfo.packageType);
-
+    const selectedItems = [];
 
     const handleCategoryButtonClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -169,6 +160,14 @@ export default function Detail() {
         const newTotalPrice = (newCount * discountPrice).toLocaleString();
 
         setTotalPrice(newTotalPrice);
+    };
+
+    const handleSelectItem = (selectedItem) => {
+        const selectedMenuItem = productInfo.menu.find(item => item.index === selectedItem);
+        selectedItems.push(selectedMenuItem);
+
+        const index = productInfo.menu.findIndex(item => item.index === selectedItem);
+        count[index] = 1;
     };
 
     return (
@@ -209,7 +208,7 @@ export default function Detail() {
                 </Popover>
                 <main className="css-1eoy87d e17iylht5">
                     <Box mr={1} className="css-12z0wuy MuiBox-root css-12z0wuy">
-                        <img src={productDescription.filePath} alt="상품 사진" sizes="100vw"/>
+                        <img src={productDescription.fileInfo[0].path} alt="상품 사진" sizes="100vw"/>
                     </Box>
                     <Box flex="1">
                         <div className="css-1qy9c46">
@@ -226,7 +225,6 @@ export default function Detail() {
                     </span>
                         <p className="css-1jali72 e17iylht2">원산지: 상품설명/상세정보 참조</p>
                         <div className="css-toq1xn e1hhkg2t2">로그인 후, 적립 혜택이 제공됩니다.</div>
-
                         <ul className="css-iqoq9n">
                             <li className="css-e6zlnr">
                                 <dt className="css-lytdfk">배송</dt>
@@ -243,8 +241,6 @@ export default function Detail() {
                             <li className="css-e6zlnr">
                                 <dt className="css-lytdfk">포장타입</dt>
                                 <dd className="css-1k8t52o">
-                                    {/*<p className="css-c02hqi e6qx2kx1">냉장 (종이포장)</p>*/}
-                                    {/*<p className="css-uy94b2">택배배송은 에코 포장이 스티로폼으로 대체됩니다.</p>*/}
                                     {packageTypes.map((info, index) => (
                                         <p className={index === 0 ? "css-c02hqi e6qx2kx1" : "css-uy94b2"} key={info}>
                                             {productInfo.packageType[info]}
@@ -286,13 +282,13 @@ export default function Detail() {
                                 </dd>
                             </li>
                         </ul>
-                        <CartItem count={count} totalPrice={totalPrice} handleCountChange={handleCountChange}
-                                  productInfo={productInfo}/>
+                        <SelectItem count={count} totalPrice={totalPrice} handleCountChange={handleCountChange}
+                                    productInfo={productInfo} onSelect={handleSelectItem} selectedItems={selectedItems}/>
                     </Box>
                 </main>
-                <ProductNav/>
+                <InfoNaviBar/>
                 {/* 드롭다운 상품 선택 영역 */}
-                <SelectProduct count={count} totalPrice={totalPrice} handleCountChange={handleCountChange}
+                <SelectItemTab count={count} totalPrice={totalPrice} handleCountChange={handleCountChange}
                                productInfo={productInfo}/>
                 <ScrollToTopButton/>
             </Container>

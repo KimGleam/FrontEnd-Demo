@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
-const SelectProduct = ({ count, totalPrice, handleCountChange, productInfo }) => {
+const SelectItemTab = ({ count, totalPrice, handleCountChange, productInfo, selectedItems }) => {
     const [isVisible, setIsVisible] = useState(false);
 
     const toggleVisibility = () => {
@@ -83,4 +83,4 @@ const SelectProduct = ({ count, totalPrice, handleCountChange, productInfo }) =>
 };
 
 
-export default SelectProduct;
+export default SelectItemTab;

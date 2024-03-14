@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProductNav = () => {
+const InfoNaviBar = () => {
     return (
         <nav className="css-1le17tz en4zazl1">
             <ul className="css-tse2s2 en4zazl0">
@@ -21,4 +21,4 @@ const ProductNav = () => {
     );
 };
 
-export default ProductNav;
+export default InfoNaviBar;

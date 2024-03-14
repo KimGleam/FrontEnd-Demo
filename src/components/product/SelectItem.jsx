@@ -1,6 +1,12 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import SelectMenuBar from '../../components/product/SelectMenuBar';
 
-const CartItem = ({ count, totalPrice, handleCountChange, productInfo }) => {
+const SelectItem = ({ count, totalPrice, handleCountChange, productInfo, onSelect, selectedItems }) => {
+
+    const handleSelect = (selectedItem) => {
+        onSelect(selectedItem);
+    };
+
     return (
         <div className="css-1bp09d0 e17iylht1">
             <div className="css-2lvxh7 e1qy0s5w0">
@@ -8,32 +14,36 @@ const CartItem = ({ count, totalPrice, handleCountChange, productInfo }) => {
                     <dt className="css-lytdfk epzddad1">상품선택</dt>
                     <dd className="css-1k8t52o epzddad0">
                         <div className="cart-option-item css-1cb5lnc e1bjklo18">
-                            <div className="css-1qdyvok e1bjklo16">
-                                <span className="css-1yojl0t e1bjklo14">{productInfo.name}</span>
-                            </div>
-                            <span className="css-1072618 e1bjklo13">{productInfo.note}</span>
-                            <div className="css-tk6lxo e1bjklo15">
-                                <div className="css-nx0orh e1cqr3m40">
-                                    <button
-                                        type="button"
-                                        aria-label="수량내리기"
-                                        className="css-1e90glc e1hx75jb0"
-                                        onClick={() => handleCountChange(count - 1)}
-                                        disabled={count === 1}
-                                    ></button>
-                                    <div className="count css-6m57y0 e1cqr3m41">{count}</div>
-                                    <button
-                                        type="button"
-                                        aria-label="수량올리기"
-                                        className="css-18y6jr4 e1hx75jb0"
-                                        onClick={() => handleCountChange(count + 1)}
-                                    ></button>
+                            <SelectMenuBar onSelect={handleSelect} productInfo={productInfo} />
+                            {selectedItems.map((item, index) => (
+                                <div key={index} className="selected-item">
+                                    <div className="css-1qdyvok e1bjklo16">
+                                        <span className="css-1yojl0t e1bjklo14">{item.name}</span>
+                                    </div>
+                                    <div className="css-tk6lxo e1bjklo15">
+                                        <div className="css-nx0orh e1cqr3m40">
+                                            <button
+                                                type="button"
+                                                aria-label="수량내리기"
+                                                className="css-1e90glc e1hx75jb0"
+                                                onClick={() => handleCountChange(count - 1)}
+                                                disabled={count === 1}
+                                            ></button>
+                                            <div className="count css-6m57y0 e1cqr3m41">{count}</div>
+                                            <button
+                                                type="button"
+                                                aria-label="수량올리기"
+                                                className="css-18y6jr4 e1hx75jb0"
+                                                onClick={() => handleCountChange(count + 1)}
+                                            ></button>
+                                        </div>
+                                        <div className="css-1jzvrpg e1bjklo12">
+                                            <span className="css-fburr9 e1bjklo11">{item.cost}원</span>
+                                            <span className="css-gqkxk8 e1bjklo10">{item.discountPrice}원</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="css-1jzvrpg e1bjklo12">
-                                    <span className="css-fburr9 e1bjklo11">{productInfo.cost}원</span>
-                                    <span className="css-gqkxk8 e1bjklo10">{productInfo.discountPrice}원</span>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                     </dd>
                 </li>
@@ -80,4 +90,4 @@ const CartItem = ({ count, totalPrice, handleCountChange, productInfo }) => {
     );
 };
 
-export default CartItem;
+export default SelectItem;
