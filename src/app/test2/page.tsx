@@ -1,84 +1,140 @@
 'use client';
 
-import * as React from "react";
-import {IconButton, Menu, MenuItem} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import Box from "@mui/material/Box";
-import Badge from "@mui/material/Badge";
-import MailIcon from "@mui/icons-material/Mail";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import AccountCircle from "@mui/icons-material/AccountCircle";
+import Header from "../../components/Header";
 
-
-const Header = () => {
+const category = () => {
 
     return (
-        <div style={{position: 'fixed', width: '100%', zIndex: 9999, backgroundColor: 'white'}}>
+        <>
+            <Header></Header>
             <style jsx>{`
-                .carousel {
+                .css-raoddi {
+                    display: grid;
+                    grid-template-columns: repeat(4, 180px);
+                    gap: 16px 83px;
+                    overflow: hidden;
+                    margin-top: 28px;
+                    padding: 30px 40px;
+                    border: 1px solid rgb(226, 226, 226);
+                    line-height: 20px;
+                    margin-block-start: 1em;
+                    margin-block-end: 1em;
+                    margin-inline-start: 0px;
+                    margin-inline-end: 0px;
+                    padding-inline-start: 40px;
+                }
+
+                .css-1h52dri {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+
+                .css-16ixplb {
                     display: flex;
-                    overflow-x: auto;
-                    scroll-snap-type: x mandatory;
-                    scroll-behavior: smooth;
+                    -webkit-box-pack: justify;
+                    justify-content: space-between;
+                    -webkit-box-align: center;
+                    align-items: center;
                     width: 100%;
-                    height: 300px; /* 캐러셀 높이 조정 */
+                    height: 52px;
+                    overflow: hidden;
                 }
 
-                .item {
-                    flex: 0 0 auto;
-                    width: 300px; /* 각 상품 아이템 너비 조정 */
-                    margin-right: 20px; /* 아이템 간격 조정 */
-                    scroll-snap-align: start;
-                }
-
-                .item img {
-                    width: 100%;
-                    height: auto;
-                    border-radius: 5px;
-                }
-
-                .carousel {
+                .css-1iwixyn {
                     display: flex;
-                    overflow-x: auto;
-                    scroll-snap-type: x mandatory;
-                    scroll-behavior: smooth;
-                    width: 100%;
-                    height: 300px; /* 캐러셀 높이 조정 */
+                    -webkit-box-align: center;
+                    align-items: center;
+                    font-weight: 500;
+                    font-size: 15px;
+                    line-height: 20px;
+                    color: rgb(51, 51, 51);
                 }
 
-                .item {
-                    flex: 0 0 auto;
-                    width: 300px; /* 각 상품 아이템 너비 조정 */
-                    margin-right: 20px; /* 아이템 간격 조정 */
-                    scroll-snap-align: start;
+                .css-19yliod {
+                    font-weight: 500;
+                    font-size: 12px;
+                    line-height: 20px;
+                    margin-left: 4px;
+                    color: rgb(204, 204, 204);
                 }
 
-                .item img {
-                    width: 100%;
+                .css-1kscq9s {
+                    transition: all 250ms cubic-bezier(0.83, 0, 0.17, 1) 0s;
                     height: auto;
-                    border-radius: 5px;
+                    opacity: 0;
+                    overflow: hidden;
                 }
-            `}</style>
 
-            <div className="carousel">
-                <div className="item">
-                    <img src="product1.jpg" alt="Product 1"/>
-                    <p>상품 설명 1</p>
+                .css-x67gaa {
+                    list-style: none;
+                    margin-bottom: 18px;
+                }
+
+                .css-s5xdrg {
+                    display: flex;
+                    -webkit-box-align: center;
+                    align-items: center;
+                }
+
+                .css-17kh8wb {
+                    display: flex;
+                    -webkit-box-align: center;
+                    align-items: center;
+                    margin-right: 8px;
+                }
+
+                .css-1buhy1h {
+                    margin-right: 4px;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 17px;
+                    color: rgb(51, 51, 51);
+                    display: -webkit-box;
+                    overflow: hidden;
+                    word-break: break-all;
+                    white-space: normal;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                }
+
+                .css-ryw54y {
+                    flex-shrink: 0;
+                    font-weight: 400;
+                    font-size: 12px;
+                    line-height: 16px;
+                    color: rgb(204, 204, 204);
+                }
+            `}
+            </style>
+            <div style={{width: '1103px', paddingTop: '100px'}}>
+                <ul className="css-raoddi">
+                    <li className="css-1h52dri">1</li>
+                    <li className="css-1h52dri">2</li>
+                    <li className="css-1h52dri">3</li>
+                    <li className="css-1h52dri">4</li>
+                    <li className="css-1h52dri">5</li>
+                    <li className="css-1h52dri">6</li>
+                    <li className="css-1h52dri">7</li>
+                </ul>
+                <div style={{display: 'flex', alignItems: 'center'}}>
+                    <div style={{border: '1px solid black', width: '220px', height: '1200px'}}>
+                        <div style={{border: '1px solid black', width: '220px', height: '50px'}}>
+                        </div>
+                        <div style={{border: '1px solid black', width: '220px', height: '100px'}}>
+                        </div>
+                    </div>
+
+                    <div style={{marginLeft: '8px', border: '1px solid black', width: '875px', height: '1200px', margin:'auto'}}>
+
+                    </div>
                 </div>
-                <div className="item">
-                    <img src="product2.jpg" alt="Product 2"/>
-                    <p>상품 설명 2</p>
-                </div>
-                <div className="item">
-                    <img src="product3.jpg" alt="Product 3"/>
-                    <p>상품 설명 3</p>
-                </div>
+
+
+
             </div>
-
-
-        </div>
-
+        </>
     )
 }
 
-export default Header;
+export default category;
