@@ -172,9 +172,9 @@ export default function Detail() {
 
     return (
         <>
-            <Container sx={{marginTop: 10}}>
-                {/* 헤더 */}
-                <Header></Header>
+            {/* 헤더 */}
+            <Header></Header>
+            <Container sx={{paddingTop: 15}}>
 
                 {/* 카테고리 메뉴 */}
                 <Popover
