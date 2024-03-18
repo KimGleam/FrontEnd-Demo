@@ -14,9 +14,9 @@ const SelectItem = ({ count, totalPrice, handleCountChange, productInfo, onSelec
                     <dt className="css-lytdfk epzddad1">상품선택</dt>
                     <dd className="css-1k8t52o epzddad0">
                         <div className="cart-option-item css-1cb5lnc e1bjklo18">
-                            <SelectMenuBar onSelect={handleSelect} productInfo={productInfo} />
+                            <SelectMenuBar onSelect={handleSelect} productInfo={productInfo} selectedItems={selectedItems} />
                             {selectedItems.map((item, index) => (
-                                <div key={index} className="selected-item">
+                                <div key={index} className="css-1cb5lnc">
                                     <div className="css-1qdyvok e1bjklo16">
                                         <span className="css-1yojl0t e1bjklo14">{item.name}</span>
                                     </div>
@@ -26,15 +26,15 @@ const SelectItem = ({ count, totalPrice, handleCountChange, productInfo, onSelec
                                                 type="button"
                                                 aria-label="수량내리기"
                                                 className="css-1e90glc e1hx75jb0"
-                                                onClick={() => handleCountChange(count - 1)}
-                                                disabled={count === 1}
+                                                onClick={() => handleCountChange(index, count[index] - 1)}
+                                                disabled={count[index] === 1}
                                             ></button>
-                                            <div className="count css-6m57y0 e1cqr3m41">{count}</div>
+                                            <div className="count css-6m57y0 e1cqr3m41">{count[index]}</div>
                                             <button
                                                 type="button"
                                                 aria-label="수량올리기"
                                                 className="css-18y6jr4 e1hx75jb0"
-                                                onClick={() => handleCountChange(count + 1)}
+                                                onClick={() => handleCountChange(index, count[index] + 1)}
                                             ></button>
                                         </div>
                                         <div className="css-1jzvrpg e1bjklo12">

@@ -1,6 +1,6 @@
 'use client';
 
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {
     Container,
     IconButton,
@@ -130,12 +130,14 @@ const productDescription = {
 export default function Detail() {
     const [relationIndex, setRelationIndex] = useState(0);
     // const [count, setCount] = useState(1);
-    const count = [];
     const [totalPrice, setTotalPrice] = useState('');
     const [anchorEl, setAnchorEl] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState('');
     const packageTypes = Object.keys(productInfo.packageType);
-    const selectedItems = [];
+    // const selectedItems = [];
+    // const count = [];
+    const [selectedItems, setSelectedItems] = useState([]); // State to manage selected items
+    const [count, setCount] = useState(Array(productInfo.menu.length).fill(1)); // State to manage counts
 
     const handleCategoryButtonClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -148,26 +150,62 @@ export default function Detail() {
     const handleCategoryChange = (event) => {
         setSelectedCategory(event.target.value);
     };
-    const handleCountChange = (newCount) => {
-        if (newCount < 1) {
-            return;
-        }
-        setCount(newCount);
+    // const handleCountChange = (newCount) => {
+    //     if (newCount < 1) {
+    //         return;
+    //     }
+    //     setCount(newCount);
+    //
+    //     // 할인 가격 문자열을 숫자로 파싱
+    //     const discountPrice = parseFloat(productInfo.discountPrice.replace(/,/g, ''));
+    //     // 총 가격 계산
+    //     const newTotalPrice = (newCount * discountPrice).toLocaleString();
+    //
+    //     setTotalPrice(newTotalPrice);
+    // };
 
-        // 할인 가격 문자열을 숫자로 파싱
-        const discountPrice = parseFloat(productInfo.discountPrice.replace(/,/g, ''));
-        // 총 가격 계산
-        const newTotalPrice = (newCount * discountPrice).toLocaleString();
+    // const handleSelectItem = (selectedItem) => {
+    //     const selectedMenuItem = productInfo.menu.find(item => item.index === selectedItem);
+    //     selectedItems.push(selectedMenuItem);
+    //
+    //     const index = productInfo.menu.findIndex(item => item.index === selectedItem);
+    //     count[index] = 1;
+    // };
 
-        setTotalPrice(newTotalPrice);
-    };
+        const handleSelectItem = (selectedItem) => {
+            const selectedMenuItem = productInfo.menu.find(item => item.index === selectedItem);
 
-    const handleSelectItem = (selectedItem) => {
-        const selectedMenuItem = productInfo.menu.find(item => item.index === selectedItem);
-        selectedItems.push(selectedMenuItem);
+            setSelectedItems(prevSelectedItems => [...prevSelectedItems, selectedMenuItem]);
 
-        const index = productInfo.menu.findIndex(item => item.index === selectedItem);
-        count[index] = 1;
+            const index = productInfo.menu.findIndex(item => item.index === selectedItem);
+            setCount(prevCount => {
+                const newCount = [...prevCount];
+                newCount[index] = 1;
+                return newCount;
+            });
+        };
+
+    useEffect(() => {
+        const updatePrice = selectedItems.reduce((total, item, idx) => {
+            const itemCount = count[idx];
+            // 할인 가격을 구문 분석하여 숫자로 처리
+            const discountPrice = parseFloat(item.discountPrice.replace(/,/g, ''));
+            return total + (discountPrice * itemCount);
+        }, 0);
+
+        // 총 가격을 쉼표가 포함된 문자열로 다시 변환
+        setTotalPrice(updatePrice.toLocaleString());
+    }, [selectedItems, count]);
+
+
+    const handleCountChange = (index, newCount) => {
+        setCount(prevCount => {
+            const newCounts = [...prevCount];
+            newCounts[index] = newCount;
+            return newCounts;
+        });
+
+
     };
 
     return (

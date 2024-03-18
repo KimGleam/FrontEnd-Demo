@@ -11,9 +11,17 @@ const SelectMenuBar = ({ onSelect, productInfo, selectedItems }) => {
     };
 
     const handleItemClick = (item) => {
-        onSelect(item); // 선택된 항목을 부모 컴포넌트로 전달
-        setIsMenuOpen(false); // 메뉴 닫기
+        const isAlreadySelected = selectedItems.some(selectedItem => selectedItem.index === item);
+
+        if (isAlreadySelected) {
+            alert("이미 선택한 상품입니다.");
+            setIsMenuOpen(false);
+        } else {
+            onSelect(item);
+            setIsMenuOpen(false);
+        }
     };
+
     return (
         <div>
             <div className="MuiFormControl-root css-tzsjye">
@@ -50,24 +58,24 @@ const SelectMenuBar = ({ onSelect, productInfo, selectedItems }) => {
                 </div>
                 {isMenuOpen && (
                     <ul className="MuiList-root MuiList-padding MuiMenu-list css-r8u8y9" role="listbox" tabIndex="-1">
-                        {productInfo.menu.map((menuItem, index) => (
+                        {productInfo.menu.map((item, index) => (
                             <li
                                 key={index}
                                 className="MuiMenuItem-root MuiMenuItem-gutters MuiButtonBase-root css-1p79lf5"
                                 tabIndex="0"
                                 role="option"
                                 aria-selected="false"
-                                data-value={menuItem.index}
-                                onClick={() => handleItemClick(menuItem.index)}
+                                data-value={item.index}
+                                onClick={() => handleItemClick(item.index)}
                             >
                                 <div className="css-15h3zi e12wapb67">
                                     <div className="css-unrh3l e12wapb66">
                                         <p className="css-1k8t52o e12wapb65">
-                                            <span className="css-19h9nlb e12wapb64">{menuItem.name}</span>
+                                            <span className="css-19h9nlb e12wapb64">{item.name}</span>
                                         </p>
                                         <div className="css-t4macj e12wapb62">
-                                            <div className="css-x2o5fx e12wapb61">{menuItem.cost}원</div>
-                                            <div className="css-1fvrsoi e12wapb60">{menuItem.discountPrice}원</div>
+                                            <div className="css-fburr9 e1bjklo11">{item.cost}원</div>
+                                            <div className="css-gqkxk8 e1bjklo10">{item.discountPrice}원</div>
                                         </div>
                                     </div>
                                 </div>
