@@ -1475,3 +1475,119 @@ ul {
     align-items: center;
     height: 100%;
 }
+
+/*
+  Product Detail.jsx
+  Description
+*/
+
+.css-18eozqj:first-of-type {
+    padding-top: 40px;
+}
+
+.css-18eozqj {
+    position: relative;
+    width: 1010px;
+    padding-bottom: 100px;
+}
+
+.css-8k5a6c {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    max-width: 1010px;
+    padding: 0 10px;
+    margin: 0 auto;
+}
+
+.css-1d3w5wq {
+    width: 100%;
+}
+
+.css-1yg5v8v .goods_wrap {
+    width: 1010px;
+    margin: 0 auto;
+    font-family: 'Noto Sans';
+    font-weight: 300;
+    letter-spacing: 0;
+}
+
+.css-1yg5v8v .goods_wrap .context.last {
+    margin-bottom: 170px;
+}
+
+.css-1yg5v8v .goods_wrap .goods_intro .context .words {
+    margin-top: 28px;
+}
+
+.css-1yg5v8v .goods_wrap .context .words {
+    margin-top: 55px;
+    font-size: 18px;
+    line-height: 32px;
+    color: #373737;
+}
+
+.css-1yg5v8v .goods_wrap .goods_pick .context {
+    margin-bottom: 130px;
+}
+
+.css-1yg5v8v .goods_wrap .context {
+    margin-bottom: 130px;
+}
+
+.css-1yg5v8v .goods_wrap .context h3, .css-1yg5v8v .goods_wrap .context strong, .css-1yg5v8v .goods_wrap .context b {
+    font-weight: 500;
+}
+
+.css-1yg5v8v .goods_wrap .sub_tit {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 30px;
+    line-height: 38px;
+}
+
+.css-1yg5v8v .goods_wrap .goods_tip {
+    margin-bottom: 170px;
+}
+
+.css-1yg5v8v .goods_wrap .goods_tip .tip_box {
+    margin-top: -15px;
+    border: 1px solid #b9b9b9;
+}
+.css-1yg5v8v .goods_wrap .goods_tip .tip_box .context {
+    margin: 60px 62px;
+}
+
+.css-1yg5v8v .goods_wrap .tip_box strong {
+    display: block;
+    font-size: 25px;
+    line-height: 38px;
+    margin-bottom: 10px;
+}
+
+.css-1yg5v8v .goods_wrap .tip_box .context .words {
+    margin: 0;
+    font-size: 18px;
+    line-height: 32px;
+}
+
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.css-1yg5v8v .goods_wrap .goods_tip .tip_box .words+.words {
+    margin-top: 30px;
+}

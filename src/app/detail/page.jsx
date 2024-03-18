@@ -16,6 +16,7 @@ import ScrollToTopButton from '../../components/ScrollToTopButton';
 import InfoNaviBar from '../../components/product/InfoNaviBar';
 import SelectItem from '../../components/product/SelectItem';
 import SelectItemTab from '../../components/product/SelectItemTab';
+import Description from '../../components/product/Description';
 import Header from "../../components/Header";
 import "../../static/page.css";
 
@@ -213,7 +214,6 @@ export default function Detail() {
             {/* 헤더 */}
             <Header></Header>
             <Container sx={{paddingTop: 15}}>
-
                 {/* 카테고리 메뉴 */}
                 <Popover
                     open={Boolean(anchorEl)}
@@ -330,6 +330,7 @@ export default function Detail() {
                                productInfo={productInfo}/>
                 <ScrollToTopButton/>
             </Container>
+            <Description></Description>
             {/* 공통 푸터 영역 */}
             <Footer/>
         </>
