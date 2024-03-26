@@ -3,7 +3,6 @@
 import * as React from "react";
 import {IconButton, Menu, MenuItem} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import Box from "@mui/material/Box";
 import Badge from "@mui/material/Badge";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -11,6 +10,10 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 
 
 const Header = () => {
+
+    const home = () => {
+        window.location.href = '/home';
+    };
 
     return (
         <div style={{position:'fixed', width: '100%', zIndex:9999, backgroundColor: 'white'}}>
@@ -25,6 +28,7 @@ const Header = () => {
                 }
 
                 .logo {
+                    cursor: pointer;
                     margin-left: 20%;
                     font-size: 24px;
                     font-weight: bold;
@@ -118,7 +122,7 @@ const Header = () => {
             `}</style>
 
             <div className="header">
-                <div className="logo">Double U</div>
+                <div className="logo" onClick={home}>Double U</div>
 
                 <div className="search-container">
                     <input type="text" className="search-input" placeholder="검색어를 입력하세요..."/>
