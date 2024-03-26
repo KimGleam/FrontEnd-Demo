@@ -11,12 +11,14 @@ import {
 import {MenuList} from "@mui/joy";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Box from "@mui/material/Box";
+import Header from "../../components/Header";
 import Footer from '../../components/footer';
 import ScrollToTopButton from '../../components/ScrollToTopButton';
 import InfoNaviBar from '../../components/product/InfoNaviBar';
 import SelectItem from '../../components/product/SelectItem';
 import SelectItemTab from '../../components/product/SelectItemTab';
-import Header from "../../components/Header";
+import Description from '../../components/product/Description';
+import Review from '../../components/product/Review';
 import "../../static/page.css";
 
 const categories = [
@@ -324,6 +326,8 @@ export default function Detail() {
                     </Box>
                 </main>
                 <InfoNaviBar/>
+                {/*<Description/>*/}
+                {/*<Review/>*/}
                 {/* 드롭다운 상품 선택 영역 */}
                 <SelectItemTab count={count} totalPrice={totalPrice} handleCountChange={handleCountChange}
                                productInfo={productInfo}/>
