@@ -4,6 +4,7 @@ import { useState } from 'react';
 import {Accordion, AccordionSummary, AccordionDetails, Checkbox, Typography} from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import * as React from "react";
+import Box from "@mui/material/Box";
 
 
 const SidebarFilter = () => {
@@ -44,9 +45,10 @@ const SidebarFilter = () => {
                     <Typography>카테고리</Typography>
                 </AccordionSummary>
                 <AccordionDetails style={accordionDetailsStyle}>
-                    <Checkbox checked={categoryChecked} onChange={handleCategoryChange}/>
-                    <Typography>카테고리 1</Typography>
-                    {/* 다른 카테고리들도 추가 */}
+                    <Box style={{display: 'flex'}}>
+                        <Checkbox checked={categoryChecked} onChange={handleCategoryChange}/>
+                        <Typography sx={{pt: 1}}>카테고리 1</Typography>
+                    </Box>
                 </AccordionDetails>
             </Accordion>
             <Accordion>
@@ -54,14 +56,22 @@ const SidebarFilter = () => {
                     <Typography>가격대</Typography>
                 </AccordionSummary>
                 <AccordionDetails style={accordionDetailsStyle}>
-                    <Checkbox checked={priceChecked} onChange={handlePriceChange}/>
-                    <Typography>1000원 미만</Typography>
-                    <Checkbox checked={priceChecked} onChange={handlePriceChange}/>
-                    <Typography>1000원 ~ 5000원</Typography>
-                    <Checkbox checked={priceChecked} onChange={handlePriceChange}/>
-                    <Typography>5000원 ~ 10000원</Typography>
-                    <Checkbox checked={priceChecked} onChange={handlePriceChange}/>
-                    <Typography>10000원 이상</Typography>
+                    <Box style={{display: 'flex'}}>
+                        <Checkbox checked={priceChecked} onChange={handlePriceChange}/>
+                        <Typography sx={{pt: 1}}>1000원 미만</Typography>
+                    </Box>
+                    <Box style={{display: 'flex'}}>
+                        <Checkbox checked={priceChecked} onChange={handlePriceChange}/>
+                        <Typography sx={{pt: 1}}>1000원 ~ 5000원</Typography>
+                    </Box>
+                    <Box style={{display: 'flex'}}>
+                        <Checkbox checked={priceChecked} onChange={handlePriceChange}/>
+                        <Typography sx={{pt: 1}}>5000원 ~ 10000원</Typography>
+                    </Box>
+                    <Box style={{display: 'flex'}}>
+                        <Checkbox checked={priceChecked} onChange={handlePriceChange}/>
+                        <Typography sx={{pt: 1}}>10000원 이상</Typography>
+                    </Box>
                 </AccordionDetails>
             </Accordion>
         </div>
