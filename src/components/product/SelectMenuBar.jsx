@@ -58,7 +58,7 @@ const SelectMenuBar = ({ onSelect, productInfo, selectedItems }) => {
                 </div>
                 {isMenuOpen && (
                     <ul className="MuiList-root MuiList-padding MuiMenu-list css-r8u8y9" role="listbox" tabIndex="-1">
-                        {productInfo.menu.map((item, index) => (
+                        {productInfo.options.map((item, index) => (
                             <li
                                 key={index}
                                 className="MuiMenuItem-root MuiMenuItem-gutters MuiButtonBase-root css-1p79lf5"
@@ -71,11 +71,13 @@ const SelectMenuBar = ({ onSelect, productInfo, selectedItems }) => {
                                 <div className="css-15h3zi e12wapb67">
                                     <div className="css-unrh3l e12wapb66">
                                         <p className="css-1k8t52o e12wapb65">
-                                            <span className="css-19h9nlb e12wapb64">{item.name}</span>
+                                            <span className="css-19h9nlb e12wapb64">{item.productSubName}</span>
                                         </p>
                                         <div className="css-t4macj e12wapb62">
-                                            <div className="css-fburr9 e1bjklo11">{item.cost}원</div>
-                                            <div className="css-gqkxk8 e1bjklo10">{item.discountPrice}원</div>
+                                            <div className="css-fburr9 e1bjklo11">{item.regularPrice}원</div>
+                                            {productInfo.discountPrice && (
+                                                <div className="css-gqkxk8 e1bjklo10">{item.discountPrice}원</div>
+                                            )}
                                         </div>
                                     </div>
                                 </div>

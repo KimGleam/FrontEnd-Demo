@@ -1,9 +1,19 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
-const SelectItemTab = ({ count, totalPrice, handleCountChange, productInfo, selectedItems }) => {
+const SelectItemTab = ({ count, totalPrice, handleCountChange, productInfo, onSelect, selectedItems }) => {
     const [isVisible, setIsVisible] = useState(false);
+
+    const [updatedTotalPrice, setUpdatedTotalPrice] = useState(0);
+
+    useEffect(() => {
+        const newTotalPrice = productInfo.discountPrice ?
+            parseFloat(productInfo.discountPrice * count[0]) :
+            parseFloat(productInfo.regularPrice * count[0]);
+
+        setUpdatedTotalPrice(newTotalPrice);
+    }, [count, productInfo]);
 
     const toggleVisibility = () => {
         setIsVisible(!isVisible);
@@ -23,21 +33,31 @@ const SelectItemTab = ({ count, totalPrice, handleCountChange, productInfo, sele
                             <div className="css-1dltvla e1bhvj4s10">
                                 <div className="css-1x17g94 e1bhvj4s9">
                                     <span className="css-jpj1ph e1bhvj4s8">
-                                        <span className="css-gad126 e1bhvj4s7">{productInfo.name}</span>
+                                        <span className="css-gad126 e1bhvj4s7">{productInfo.productName}</span>
                                         {!productInfo.accumulateYn && <span className="css-u0s929 e1bhvj4s6">적립제외상품</span>}
                                     </span>
                                     <span className="css-mk4uq1 e1bhvj4s5"><div className="css-nx0orh e1cqr3m40">
-                                        <button type="button" aria-label="수량내리기" className="css-1e90glc e1hx75jb0"
-                                                onClick={() => handleCountChange(count - 1)}
-                                                disabled={count === 1}></button>
-                                                    <div className="count css-6m57y0 e1cqr3m41">{count}</div>
-                                                <button type="button" aria-label="수량올리기"
-                                                        className="css-18y6jr4 e1hx75jb0"
-                                                        onClick={() => handleCountChange(count + 1)}></button>
+                                         <button
+                                             type="button"
+                                             aria-label="수량내리기"
+                                             className={`css-1e90glc e1hx75jb0 ${count[0] === 1 ? 'disabled' : 'css-8azp8'}`}
+                                             onClick={() => handleCountChange(0, count[0] - 1)}
+                                             disabled={count[0] === 1}
+                                         ></button>
+                                        <div className="count css-6m57y0 e1cqr3m41">{count[0]}</div>
+                                        <button
+                                            type="button"
+                                            aria-label="수량올리기"
+                                            className="css-18y6jr4 e1hx75jb0"
+                                            onClick={() => handleCountChange(0, count[0] + 1)}
+                                        ></button>
                                     </div>
                                         <span className="css-1tjxd68 e1bhvj4s3">
-                                            <span className="css-15v9kqc e1bhvj4s2">{productInfo.cost}원</span>
-                                            <span className="css-ei9o8o e1bhvj4s1">{productInfo.discountPrice}원</span></span>
+                                           <span className="css-fburr9 e1bjklo11">{productInfo.regularPrice}원</span>
+                                            {productInfo.discountPrice && (
+                                                <span className="css-gqkxk8 e1bjklo10">{productInfo.discountPrice}원</span>
+                                            )}
+                                        </span>
                                     </span>
                                 </div>
                             </div>
@@ -46,7 +66,7 @@ const SelectItemTab = ({ count, totalPrice, handleCountChange, productInfo, sele
                             <div className="css-ixlb9s eebc7rx8">
                                 <div className="css-yhijln eebc7rx7">
                                     <span className="css-w1is7v eebc7rx6">총 상품금액 :</span>
-                                    <span className="css-x4cdgl eebc7rx5">{totalPrice}</span>
+                                    <span className="css-x4cdgl eebc7rx5">{updatedTotalPrice}</span>
                                     <span className="css-1jb8hmu eebc7rx4">원</span>
                                 </div>
                                 <div className="css-1iis94s eebc7rx3"><span
