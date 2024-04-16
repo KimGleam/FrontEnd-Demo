@@ -107,6 +107,9 @@ export default function ProductDetail() {
         allergyInfo: '',
         deliveryInfo: '',
         livestockHistoryInfo: '',
+        stockingInfo: '',
+        afterServiceInfo: '',
+        sugarContent: '',
         notification: '',
         carefulInfo: '',
         expirationDate: '',
@@ -130,7 +133,7 @@ export default function ProductDetail() {
     };
 
     const handleSelectItem = (selectedItem) => {
-        const selectedMenuItem = productInfo.productOptions.find(item => item.index === selectedItem);
+        const selectedMenuItem = productInfo.options.find(item => item.index === selectedItem);
 
         setSelectedItems(prevSelectedItems => [...prevSelectedItems, selectedMenuItem]);
 
@@ -152,7 +155,7 @@ export default function ProductDetail() {
 
     const fetchProductInfo = async () => {
         try {
-            const response = await fetch('http://localhost:8080/goods/detail?productId=5372');
+            const response = await fetch('http://localhost:8080/goods/detail?productId=6474');
             if (response.ok) {
                 const data = await response.json();
                 updateProductState(data);
@@ -182,6 +185,9 @@ export default function ProductDetail() {
             allergyInfo,
             deliveryInfo,
             livestockHistoryInfo,
+            stockingInfo,
+            afterServiceInfo,
+            sugarContent,
             notification,
             carefulInfo,
             expirationDate
@@ -205,6 +211,9 @@ export default function ProductDetail() {
             allergyInfo: allergyInfo,
             deliveryInfo: deliveryInfo,
             livestockHistoryInfo: livestockHistoryInfo,
+            stockingInfo: stockingInfo,
+            afterServiceInfo: afterServiceInfo,
+            sugarContent: sugarContent,
             notification: notification,
             carefulInfo: carefulInfo,
             expirationDate: expirationDate
@@ -234,7 +243,15 @@ export default function ProductDetail() {
         setTotalPrice(updatePrice.toLocaleString());
     }, [selectedItems, count, productInfo]);
 
-
+    useEffect(() => {
+        // totalPrice가 숫자형일 때만 변환 수행
+        if (!isNaN(parseFloat(totalPrice))) {
+            // 숫자를 원화 형식으로 변환
+            const formattedPrice = parseFloat(totalPrice).toLocaleString('ko-KR');
+            // 변환된 가격을 상태로 설정
+            setTotalPrice(formattedPrice);
+        }
+    }, [totalPrice]);
 
     return (
         <>
@@ -291,15 +308,16 @@ export default function ProductDetail() {
                             <div className="css-abwjr2">
                                 <h2>
                                     <span className="css-5nirzt">{productInfo.discountRate}%</span>
-                                    <span className="css-9pf1ze">{productInfo.discountPrice}</span>
+                                    <span
+                                        className="css-9pf1ze">{parseFloat(productInfo.discountPrice).toLocaleString('ko-KR')}</span>
                                     <span className="css-1x9cx9j">원</span>
                                 </h2>
-                                <span className="css-1e1rd4p e1q8tigr0"><span>{productInfo.regularPrice}원</span></span>
+                                <span className="css-1e1rd4p e1q8tigr0"><span>{parseFloat(productInfo.regularPrice).toLocaleString('ko-KR')}원</span></span>
                             </div>
                         )}
                         {!productInfo.discountRate && !productInfo.discountPrice && productInfo.regularPrice && (
                             <h2 className="css-abwjr2">
-                                <span className="css-9pf1ze">{productInfo.regularPrice}</span>
+                                <span className="css-9pf1ze">{parseFloat(productInfo.regularPrice).toLocaleString('ko-KR')}</span>
                                 <span className="css-1x9cx9j">원</span>
                             </h2>
                         )}
@@ -371,6 +389,30 @@ export default function ProductDetail() {
                                     <dt className="css-lytdfk">축산물 이력정보</dt>
                                     <dd className="css-1k8t52o">
                                         <p className="css-c02hqi">{productInfo.livestockHistoryInfo}</p>
+                                    </dd>
+                                </li>
+                            )}
+                            {productInfo.stockingInfo && (
+                                <li className="css-e6zlnr">
+                                    <dt className="css-lytdfk">재고정보</dt>
+                                    <dd className="css-1k8t52o">
+                                        <p className="css-c02hqi">{productInfo.stockingInfo}</p>
+                                    </dd>
+                                </li>
+                            )}
+                            {productInfo.afterServiceInfo && (
+                                <li className="css-e6zlnr">
+                                    <dt className="css-lytdfk">A/S 정보</dt>
+                                    <dd className="css-1k8t52o">
+                                        <p className="css-c02hqi">{productInfo.afterServiceInfo}</p>
+                                    </dd>
+                                </li>
+                            )}
+                            {productInfo.sugarContent && (
+                                <li className="css-e6zlnr">
+                                    <dt className="css-lytdfk">당도</dt>
+                                    <dd className="css-1k8t52o">
+                                        <p className="css-c02hqi">{productInfo.sugarContent}</p>
                                     </dd>
                                 </li>
                             )}

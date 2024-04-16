@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import SelectMenuBar from '../../components/product/SelectMenuBar';
 import product from "../Product";
 
-const SelectItem = ({ count, totalPrice, handleCountChange, productInfo, onSelect, selectedItems }) => {
+const SelectItem = ({count, totalPrice, handleCountChange, productInfo, onSelect, selectedItems}) => {
 
     const [updatedTotalPrice, setUpdatedTotalPrice] = useState(0);
 
@@ -25,6 +25,11 @@ const SelectItem = ({ count, totalPrice, handleCountChange, productInfo, onSelec
                     <dt className="css-lytdfk epzddad1">상품선택</dt>
                     <dd className="css-1k8t52o epzddad0">
                         <div className="cart-option-item css-1cb5lnc e1bjklo18">
+                            {!productInfo.options || productInfo.options.length === 0 ? (
+                                <div className="css-1qdyvok e1bjklo16">
+                                    <span className="css-1yojl0t e1bjklo14">{productInfo.productSubName}</span>
+                                </div>
+                            ) : null}
                             {productInfo.options && productInfo.options.length > 0 ? (
                                 <SelectMenuBar onSelect={handleSelect} productInfo={productInfo}
                                                selectedItems={selectedItems}/>
@@ -47,13 +52,21 @@ const SelectItem = ({ count, totalPrice, handleCountChange, productInfo, onSelec
                                         ></button>
                                     </div>
                                     <div className="css-1jzvrpg e1bjklo12">
-                                        <span className="css-fburr9 e1bjklo11">{productInfo.regularPrice}원</span>
-                                        {productInfo.discountPrice && (
-                                            <span className="css-gqkxk8 e1bjklo10">{productInfo.discountPrice}원</span>
+                                        {productInfo.discountPrice ? (
+                                            <>
+                        <span
+                            className="css-fburr9 e1bjklo11">{parseFloat(productInfo.regularPrice).toLocaleString('ko-KR')}원</span>
+                                                <span
+                                                    className="css-gqkxk8 e1bjklo10">{parseFloat(productInfo.discountPrice).toLocaleString('ko-KR')}원</span>
+                                            </>
+                                        ) : (
+                                            <span
+                                                className="css-gqkxk8 e1bjklo10">{parseFloat(productInfo.regularPrice).toLocaleString('ko-KR')}원</span>
                                         )}
                                     </div>
                                 </div>
-                            )}
+                            )
+                            }
                         </div>
                     </dd>
                 </li>
@@ -62,7 +75,8 @@ const SelectItem = ({ count, totalPrice, handleCountChange, productInfo, onSelec
                 <div className="css-ixlb9s eebc7rx8">
                     <div className="css-yhijln eebc7rx7">
                         <span className="css-w1is7v eebc7rx6">총 상품금액 :</span>
-                        <span className="css-x4cdgl eebc7rx5">{updatedTotalPrice}</span>
+                        <span
+                            className="css-x4cdgl eebc7rx5">{parseFloat(updatedTotalPrice).toLocaleString('ko-KR')}</span>
                         <span className="css-1jb8hmu eebc7rx4">원</span>
                     </div>
                     <div className="css-1iis94s eebc7rx3">
@@ -72,7 +86,7 @@ const SelectItem = ({ count, totalPrice, handleCountChange, productInfo, onSelec
                 </div>
             </div>
             <div className="css-gnxbjx e10vtr1i2">
-            <button className="css-3z91zj e4nu7ef3" type="button" width="56" height="56" radius="3">
+                <button className="css-3z91zj e4nu7ef3" type="button" width="56" height="56" radius="3">
                     <span className="css-nytqmg e4nu7ef1">
                         <img
                             src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0yNS44MDcgNy44NjNhNS43NzcgNS43NzcgMCAwIDAtOC4xNzIgMEwxNiA5LjQ5N2wtMS42MzUtMS42MzRhNS43NzkgNS43NzkgMCAxIDAtOC4xNzMgOC4xNzJsMS42MzQgMS42MzQgNy40NjYgNy40NjdhMSAxIDAgMCAwIDEuNDE1IDBzMCAwIDAgMGw3LjQ2Ni03LjQ2N2gwbDEuNjM0LTEuNjM0YTUuNzc3IDUuNzc3IDAgMCAwIDAtOC4xNzJ6IiBzdHJva2U9IiM1RjAwODAiIHN0cm9rZS13aWR0aD0iMS42IiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4K"

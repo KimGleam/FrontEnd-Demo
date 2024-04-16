@@ -1220,9 +1220,9 @@ img, legend {
     vertical-align: top;
 }
 
-canvas, img, video {
-    max-width: 95%;
-}
+/*canvas, img, video {*/
+/*    max-width: 95%;*/
+/*}*/
 
 .css-175n8cp {
     padding: 20px 0px 30px;
@@ -1515,6 +1515,21 @@ detail.jsx - description.jsx
     position: relative;
     width: 1010px;
     padding-bottom: 100px;
+}
+
+.css-1lyi66c .goods_wrap .pic {
+    text-align: center;
+}
+.css-1lyi66c .goods_wrap {
+    width: 1010px;
+    margin: 0px auto;
+    font-family: "Noto Sans KR";
+    font-weight: 300;
+    letter-spacing: 0px;
+}
+
+.css-1d3w5wq {
+    width: 100%;
 }
 
 .css-8k5a6c {
